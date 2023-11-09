@@ -1,7 +1,9 @@
 import Button from "@mui/material/Button";
 import "./Signin.css";
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
+  const navigate = useNavigate()
   return (
     <div className="container">
       <div className="Signin">
@@ -28,7 +30,7 @@ function Signin() {
           <button className="signinbutton">Sign In</button>
         </div>
         <div>
-          <button className="CreateanAccount">Create an Account</button>
+          <button onClick={()=>navigate('/createanaccount')} className="CreateanAccount">Create an Account</button>
         </div>
         <footer className="footer">
           <a href="foote">Forgot Password?...</a>

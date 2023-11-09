@@ -1,12 +1,24 @@
+import "./App.css"
+import CreateanAccount from "./Components/CreateanAccount"
 import Signin from "./Components/Signin"
-// import { useContext } from "react"
+import Home from "./Components/Home/Home"
+import { Routes,Route } from "react-router-dom"
+
 
 function App(){
-//  const CreateContext = useContext()
+
     return(
-        <div>
-          <Signin/>
-        </div>
+
+      <div className="App">
+        <Routes>
+
+          <Route path="/" element={<Signin/>} />
+          <Route path="/createanaccount" element={<CreateanAccount/>}/>
+          <Route path="/home" element={<Home/>}/>
+  
+        </Routes>
+      </div>
+      
     )
 }
 

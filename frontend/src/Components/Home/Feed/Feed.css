@@ -1,0 +1,16 @@
+.Feed{
+    flex: 0.5;
+    width: 100%;
+    border-left: 1px solid var(--twitter-secondary);
+    border-right: 1px solid var(--twitter-secondary);
+    height: 100vh;
+}
+
+.Feedheader{
+    padding: 0.5rem 1rem;
+}
+
+.Feedheader h2{
+    font-size: 1.3rem;
+}
+

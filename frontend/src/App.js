@@ -1,12 +1,23 @@
+import CreateanAccount from "./Components/CreateanAccount"
 import Signin from "./Components/Signin"
-// import { useContext } from "react"
+import Homefeed from "./Components/Home/Homefeed/Homefeed"
+import { Routes,Route } from "react-router-dom"
+
 
 function App(){
-//  const CreateContext = useContext()
+
     return(
-        <div>
-          <Signin/>
-        </div>
+
+      <div>
+        <Routes>
+
+          <Route path="/" element={<Signin/>} />
+          <Route path="/createanaccount" element={<CreateanAccount/>}/>
+          <Route path="/home" element={<Homefeed/>}/>
+  
+        </Routes>
+      </div>
+      
     )
 }
 

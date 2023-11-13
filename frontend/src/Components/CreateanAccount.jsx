@@ -1,54 +1,104 @@
 import "./CreateanAccount.css";
-import Logo from "./Assets/GlobalTweet.jpg"
+import Logo from "./Assets/GlobalTweet.jpg";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
-function CreateanAccount(){
-    
-    const navigate = useNavigate()
 
-    return(
-        <div className="CreateanAccountcontainer">
-         <div className="CreateanAccountnew">
-      
-           <img className="GlobalTweetimage" src={Logo} />
-        
-        <div> 
+function CreateanAccount() {
+  const navigate = useNavigate();
 
+  const Register = async (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const mobile = e.target.mobile.value;
+    const username = e.target.username.value;
+    const password = e.target.password.value;
+    try {
+      const response = await axios.post(
+        "http://localhost:7777/api/user/createanaccount",
+        {
+          name: name,
+          email: email,
+          mobile: mobile,
+          username: username,
+          password: password,
+        }
+      );
+
+      if (response.data.status == "success") {
+        alert("Account Created Successfully");
+        navigate("/");
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
+  return (
+    <div className="CreateanAccountcontainer">
+      <div className="CreateanAccountnew">
+        <img className="GlobalTweetimage" src={Logo} />
+
+        <form action="" onSubmit={Register}>
+          <div>
             <p> Sign up here,</p>
+            <input className="Name" type="text" placeholder="Name" id="name"/> <br />
+            <br />
+          </div>
 
-           <input className="Name" type="text" placeholder="Name" /> <br/><br/>
-           
-        </div>
+          <div>
+            <input className="Email" type="email" placeholder="Email" id="email"/> <br />
+            <br />
+          </div>
 
-        <div>
-            <input className="Email" type="email" placeholder="Email" /> <br/><br/>
-        </div>
+          <div>
+            <input
+              className="Mobile"
+              type="number"
+              placeholder="Mobile Number"
+              id="mobile"
+            />{" "}
+            <br />
+            <br />
+          </div>
 
-        <div>
-            <input className="Mobile" type="number" placeholder="Mobile Number" /> <br/><br/>
-        </div>
+          <div>
+            <input className="Username" type="text" placeholder="Username" id="username"/>{" "}
+            <br />
+            <br />
+          </div>
 
-        <div>
-            <input className="Username" type="text" placeholder="Username" /> <br/><br/>
-        </div>
+          <div>
+            <input
+              className="Password"
+              type="password"
+              placeholder="Password"
+              id="password"
+            />{" "}
+            <br />
+            <br />
+          </div>
 
-        <div>
-            <input className="Password" type="password" placeholder="Password" /> <br/><br/>
-        </div>
-
-        <div>
-          <button className="CreateanAccount">Create an Account</button>
-        </div>
-        <div>
-          <p > Already have an Account? <a onClick={()=>navigate('/')} href="">Signin</a></p>
-        </div>
-
+          <div>
+            <button className="CreateanAccount" type="submit">
+              Create an Account
+            </button>
+          </div>
+          <div>
+            <p>
+              {" "}
+              Already have an Account?{" "}
+              <a onClick={() => navigate("/")} href="">
+                Signin
+              </a>
+            </p>
+          </div>
+        </form>
       </div>
     </div>
-        
-        
-    )
+  );
 }
 
-export default CreateanAccount
+export default CreateanAccount;

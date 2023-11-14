@@ -1,7 +1,8 @@
 const bcrypt = require("bcrypt");
-const User =  require('../Model/userSchema');
+
 const { joiUserValidationSchema } = require("../Model/ValidationSchema");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const UserSchemaa = require("../Model/UserSchemaa");
 
 
 module.exports  = {
@@ -17,12 +18,12 @@ module.exports  = {
           
        const { name, email, mobile, username, password} = value;
 
-       await User.create({
-        Name: name,
-        Email: email,
-        Mobile : mobile,
-        Username : username,
-        Password : password,
+       await UserSchemaa.create({
+        name,
+        email,
+        mobile,
+        username,
+        password,
        })
         res.status(200).json({
             status:"success",
@@ -43,22 +44,39 @@ module.exports  = {
        }
 
        const { username, password } = value 
-
-       await User.find({
+       console.log(username);
+       const User= await UserSchemaa.findOne({
            username: username,
            password : password
        })
+       
         
        if(!User){
          return res.status(404).json({error: "user not found"});
        }
          const token = jwt.sign({
-            username: username
+            id: User._id
          }, process.env.USER_ACCESS_TOKEN_SECRET)
 
          res.status(200).json({status: "success", message: "Signin successful", data: token })
 
-   }
+   },
+
+
+    
+
+   profile : async (req,res) => {
+      const userprofile = await UserSchemaa.find({ _id:res.token })
+      if(userprofile.length !== 0){
+
+        res.json(userprofile)
+      } else {
+        res.json("user not found")
+      }
+      
+   },
+
+
 
 
 }

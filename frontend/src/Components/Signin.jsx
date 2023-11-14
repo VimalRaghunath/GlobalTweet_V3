@@ -18,7 +18,7 @@ function Signin() {
         "http://localhost:7777/api/user/",
         {
           
-          username: username,
+          username : username,
           password: password,
         }
       );
@@ -48,12 +48,12 @@ function Signin() {
           </div> <br/><br/>
          <form action="" onSubmit={Signin}>
         <div>
-           <input className="input1" type="email" placeholder="Email/username" /> <br/><br/>
+           <input className="input1" type="text" placeholder="Email/username" id="username"/> <br/><br/>
            
         </div>
 
         <div>
-            <input className="input2" type="password" placeholder="Password" /> <br/><br/>
+            <input className="input2" type="password" placeholder="Password" id="password" /> <br/><br/>
         </div>
 
         <div>

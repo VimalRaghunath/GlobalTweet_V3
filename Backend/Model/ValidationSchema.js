@@ -14,7 +14,12 @@ const joiUserValidationSchema = Joi.object({
 
 const joiPostValidationSchema = Joi.object({
 
-
+    id: Joi.string(),
+    title: Joi.string(),
+    description: Joi.string(),
+    image: Joi.string(),
+    category: Joi.string(),
+    likes: Joi.string(),
 
 });
 

@@ -2,9 +2,11 @@ import Button from "@mui/material/Button";
 import "./Signin.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
+import { useCookies } from 'react-cookie';
 
 function Signin() {
 
+  const [_,setcookie] = useCookies(["cookies"])
   const navigate = useNavigate()
 
   const Signin = async (e) => {
@@ -24,6 +26,7 @@ function Signin() {
       );
 
       if (response.data.status == "success") {
+        setcookie("cookies",response.data.data)
         alert("Signed Successfully");
         navigate("/home");
       }

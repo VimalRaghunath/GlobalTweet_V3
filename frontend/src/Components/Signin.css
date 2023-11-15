@@ -58,8 +58,8 @@
     background-color: #2aadff;
     font-weight: bold;
     color: white;
-    width: 200px;
-    padding: 10px 40px 10px 40px;
+    width: 250px;
+    padding: 10px 68px 10px 62px;
 }
 
 .CreateanAccount{
@@ -70,7 +70,7 @@
     font-weight: bold;
     margin-top: 10px;
     border-radius: 20px;
-    padding: 10px 62px 10px 62px;
+    padding: 10px 65px 10px 65px;
     border: 1px solid;
     width: 250px;
     text-align: center;

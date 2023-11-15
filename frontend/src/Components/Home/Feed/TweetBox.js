@@ -6,7 +6,7 @@ import { ImageOutlined,GifBoxOutlined,PollOutlined,SentimentDissatisfiedOutlined
 function TweetBox() {
   return (
     <div className='TweetBox'>
-      Tweetbox
+      Create a post
       <form className='TweetBoxform'>
         <Avatar className='TweetBoxavatar'/>
         <div className='TweetBoxformfield'>
@@ -22,7 +22,7 @@ function TweetBox() {
                 <CalendarTodayOutlined  className='TweetBoxicon'/>
                 <LocationCityOutlined  className='TweetBoxicon'/>
               </div>
-             <Button className='TweetButton'>Tweet</Button>
+             <Button className='TweetButton'>Post</Button>
            </div>
         </div>
       </form>

@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt");
 const { joiUserValidationSchema } = require("../Model/ValidationSchema");
 const jwt = require("jsonwebtoken");
 const UserSchemaa = require("../Model/UserSchemaa");
+const PostSchema = require("../Model/PostSchema");
+const { joiPostValidationSchema  } = require("../Model/ValidationSchema")
 
 
 module.exports  = {
@@ -44,7 +46,7 @@ module.exports  = {
        }
 
        const { username, password } = value 
-       console.log(username);
+       
        const User= await UserSchemaa.findOne({
            username: username,
            password : password
@@ -64,6 +66,45 @@ module.exports  = {
 
 
     
+   //  Post/feed of users [POST api/user/post]--------------------
+
+
+    post : async (req,res) => {
+          
+         const { value, error } = joiPostValidationSchema.validate(req.body)
+
+         if(error){
+          return res.json(error.message)
+         }
+
+         const {  id, title, description, image, category, likes } = value
+
+         const User = await PostSchema.create({
+          id: id,
+          title: title,
+          description: description,
+          image: image,
+          category: category,
+          likes: likes,
+
+         })
+
+      },
+
+
+
+
+
+
+
+
+
+
+
+   
+   // user Profile using username,password [GET api/user/profile ]-----------------
+   
+
 
    profile : async (req,res) => {
       const userprofile = await UserSchemaa.find({ _id:res.token })
@@ -77,6 +118,9 @@ module.exports  = {
    },
 
 
+   // each users Profile using username,password [GET api/user/]
+
+    
 
 
 }

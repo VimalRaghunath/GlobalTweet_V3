@@ -5,6 +5,8 @@ import {Home,Search,NotificationsNone,MailOutline,PermIdentity } from "@mui/icon
 import Logo from "../../Assets/GlobalTweet.jpg"
 import { Button, IconButton } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import NewPost from '../NewPost'
+
 
 
 const Sidebar = () => {
@@ -21,7 +23,7 @@ const Sidebar = () => {
       <IconButton onClick={()=>navigate("/messages")}><SidebarOption Icon={MailOutline} text="Messages" /></IconButton>
       <IconButton onClick={()=>navigate("/profile")}><SidebarOption Icon={PermIdentity} text="Profile" /></IconButton>
       </div>
-      <Button onClick={()=>navigate("")} className='Sidebarnewpost' variant='outlined' fullWidth>
+      <Button onClick={()=>navigate("/newpost")} className='Sidebarnewpost' variant='outlined' fullWidth>
         New Post
       </Button>
 

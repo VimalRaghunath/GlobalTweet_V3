@@ -1,4 +1,5 @@
 import "./CreateanAccount.css";
+import React from 'react'
 import Logo from "./Assets/GlobalTweet.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";

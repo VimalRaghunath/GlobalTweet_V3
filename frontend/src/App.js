@@ -1,9 +1,11 @@
 import "./App.css"
+import React from 'react'
 import CreateanAccount from "./Components/CreateanAccount"
 import Signin from "./Components/Signin"
 import Home from "./Components/Home/Home"
 import { Routes, Route } from "react-router-dom"
 import NewPost from "./Components/Home/NewPost"
+import Profile from "./Components/Home/Profile"
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
           <Route path="/createanaccount" element={<CreateanAccount />} />
           <Route path="/home" element={<Home />} />
           <Route path="/newpost" element={<NewPost/>}/>
+          <Route path="/profile" element={<Profile/>} />
           
         </Routes>
       </div>

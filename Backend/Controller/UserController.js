@@ -107,8 +107,8 @@ module.exports  = {
 
 
    profile : async (req,res) => {
-      const userprofile = await UserSchemaa.find({ _id:res.token })
-      if(userprofile.length !== 0){
+      const userprofile = await UserSchemaa.findOne({ _id:res.token })
+      if(userprofile){
 
         res.json(userprofile)
       } else {

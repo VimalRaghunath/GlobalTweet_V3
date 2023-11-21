@@ -4,11 +4,11 @@ const upload = async (File) => {
     const data = new FormData();
     data.append("file",File)
     console.log(File)
-    data.append("upload_preset","avatar")
+    data.append("upload_preset","GlobalTweet")
 
     try {
         const res = await axios
-        .post("https://api.cloudinary.com/v1_1/dnsmxuhrz/upload", data,{
+        .post("https://api.cloudinary.com/v1_1/dzbk0oghc/upload", data,{
             headers:{
                 "Content-Type": "multipart/form-data",
             },

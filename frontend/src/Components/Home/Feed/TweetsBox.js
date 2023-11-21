@@ -15,7 +15,7 @@ function TweetBox() {
           </div>
            <div className='TweetBoxinput'>
               <div className='TweetBoxicons'>
-                <IconButton><ImageOutlined className='TweetBoxicon'  /></IconButton>  
+                <IconButton style={{position:"relative"}}>  <ImageOutlined className='TweetBoxicon'  /><input type='file' style={{opacity:0,width:10,position:"absolute"}}/></IconButton>  
                 <IconButton><SentimentDissatisfiedOutlined  className='TweetBoxicon'/></IconButton>
                 <IconButton><GifBoxOutlined  className='TweetBoxicon'/></IconButton>
                 <IconButton><PollOutlined  className='TweetBoxicon'/></IconButton>

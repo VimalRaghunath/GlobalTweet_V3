@@ -54,14 +54,18 @@ module.exports  = {
        
         
        if(!User){
-         return res.status(404).json({error: "user not found"});
-       }
+         res.status(404).json({error: "user not found"});
+       } else {
+
+       
          const token = jwt.sign({
             id: User._id
          }, process.env.USER_ACCESS_TOKEN_SECRET)
 
-         res.status(200).json({status: "success", message: "Signin successful", data: token })
+        
 
+         res.status(200).json({status: "success", message: "Signin successful", data: token })
+       }
    },
 
 

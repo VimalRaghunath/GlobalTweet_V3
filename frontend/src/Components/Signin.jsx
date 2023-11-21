@@ -28,13 +28,16 @@ function Signin() {
         }
       );
 
+      console.log(response);
       if (response.data.status == "success") {
         setcookie("cookies",response.data.data)
         alert("Signed Successfully");
         navigate("/home");
+      } else {
+        alert("failed")
       }
     } catch (error) {
-      throw new Error(error);
+      alert(error);
     }
   };
    

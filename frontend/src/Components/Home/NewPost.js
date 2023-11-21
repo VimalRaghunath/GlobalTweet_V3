@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./NewPost.css"
-import TweetBox from './Feed/TweetBox';
+import TweetBox from './Feed/TweetsBox';
 import Sidebar from './Sidebar/Sidebar';
 
 

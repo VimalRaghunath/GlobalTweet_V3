@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie';
 import Sidebar from './Sidebar/Sidebar';
 import Widgets from './Widgets/Widgets';
+import { AxiosInstance } from '../AxiosInstance';
 
 
 
@@ -16,8 +17,8 @@ function Profile() {
   useEffect( () => {
     async function newcookie (){
 
-      const posts =  await axios.get(
-          "http://localhost:7777/api/user/profile",
+      const posts =  await AxiosInstance.get(
+          "/api/user/profile",
           {
             
             headers:{

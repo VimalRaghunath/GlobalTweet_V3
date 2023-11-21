@@ -4,120 +4,91 @@ const { joiUserValidationSchema } = require("../Model/ValidationSchema");
 const jwt = require("jsonwebtoken");
 const UserSchemaa = require("../Model/UserSchemaa");
 const PostSchema = require("../Model/PostSchema");
-const { joiPostValidationSchema  } = require("../Model/ValidationSchema")
+const { joiPostValidationSchema } = require("../Model/ValidationSchema");
 
+module.exports = {
+  //create a user with name,email,mobile,username,password (POST api/user/createanaccount)--------------
 
-module.exports  = {
+  createuser: async (req, res) => {
+    const { value, error } = joiUserValidationSchema.validate(req.body);
 
-    //create a user with name,email,mobile,username,password (POST api/user/createanaccount)--------------
-        
-    createuser: async (req,res) => {
-        const { value,error } = joiUserValidationSchema.validate(req.body);
+    if (error) {
+      return res.json(error.message);
+    }
 
-       if(error) {
-         return res.json(error.message)
-       } 
-          
-       const { name, email, mobile, username, password} = value;
+    const { name, email, mobile, username, password } = value;
 
-       await UserSchemaa.create({
-        name,
-        email,
-        mobile,
-        username,
-        password,
-       })
-        res.status(200).json({
-            status:"success",
-            message:"user registration done",
-        })
-    },
+    await UserSchemaa.create({
+      name,
+      email,
+      mobile,
+      username,
+      password,
+    });
+    res.status(200).json({
+      status: "success",
+      message: "user registration done",
+    });
+  },
 
+  // user signin using username,password [POST api/user/ ]-----------------
 
-   // user signin using username,password [POST api/user/ ]-----------------
+  signin: async (req, res) => {
+    const { value, error } = joiUserValidationSchema.validate(req.body);
 
-      
-   signin : async (req,res) => {
-      
-        const { value, error } =  joiUserValidationSchema.validate(req.body);
+    if (error) {
+      return res.json(error.message);
+    }
 
-       if(error){
-         return res.json(error.message)
-       }
+    const { username, password } = value;
 
-       const { username, password } = value 
-       
-       const User= await UserSchemaa.findOne({
-           username: username,
-           password : password
-       })
-       
-        
-       if(!User){
-         res.status(404).json({error: "user not found"});
-       } else {
+    const User = await UserSchemaa.findOne({
+      username: username,
+      password: password,
+    });
 
-       
-         const token = jwt.sign({
-            id: User._id
-         }, process.env.USER_ACCESS_TOKEN_SECRET)
+    if (!User) {
+      res.status(404).json({ error: "user not found" });
+    } else {
+      const token = jwt.sign(
+        {
+          id: User._id,
+        },
+        process.env.USER_ACCESS_TOKEN_SECRET
+      );
 
-        
+      res
+        .status(200)
+        .json({ status: "success", message: "Signin successful", data: token });
+    }
+  },
 
-         res.status(200).json({status: "success", message: "Signin successful", data: token })
-       }
-   },
+  //  Post/feed of users [POST api/user/post]--------------------
 
+  post: async (req, res) => {
+    const { title, description, image, category, likes } = req.body;
+    console.log(image);
 
-    
-   //  Post/feed of users [POST api/user/post]--------------------
+    const User = await PostSchema.create({
+      title: title,
+      description: description,
+      image: image,
+      category: category,
+      likes: likes,
+    });
+    res.json(User,'added sucess');
+  },
 
+  // user Profile using username,password [GET api/user/profile ]-----------------
 
-    post : async (req,res) => {
-          
-         const { value, error } = joiPostValidationSchema.validate(req.body)
+  profile: async (req, res) => {
+    const userprofile = await UserSchemaa.findOne({ _id: res.token });
+    const user = await PostSchema.find({});
+    if (userprofile) {
+      res.json({ userpro: userprofile, usersspro: user });
+    } else {
+      res.json("user not found");
+    }
+  },
 
-         if(error){
-          return res.json(error.message)
-         }
-
-         const {  id, title, description, image, category, likes } = value
-
-         const User = await PostSchema.create({
-          id: id,
-          title: title,
-          description: description,
-          image: image,
-          category: category,
-          likes: likes,
-
-         })
-
-      },
-   
-   // user Profile using username,password [GET api/user/profile ]-----------------
-   
-
-
-   profile : async (req,res) => {
-      const userprofile = await UserSchemaa.findOne({ _id:res.token })
-      const user = await PostSchema.find({})
-      if(userprofile){
-
-        res.json({userpro:userprofile,usersspro:user})
-      } else {
-        res.json("user not found")
-      }
-      
-   },
-
-
-   // each users Profile using username,password [GET api/user/]
-
-    
-
-
-}
-
-
-
+};

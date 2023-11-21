@@ -18,7 +18,7 @@ const upload = async (File) => {
         return res.data.url;
      } else {
         console.error("upload failed.Response:",res);
-        throw new error ("upload failed")
+        throw new Error("upload failed")
      }
     } catch (error) {
 

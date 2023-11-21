@@ -7,6 +7,7 @@ const Auth = require("../Middleware/userAuthentication");
 UserRouter.post('/createanaccount',(UserController.createuser))
 UserRouter.post('/',(UserController.signin))
 UserRouter.get('/profile',Auth,UserController.profile)
+UserRouter.post('/newpost',Auth,UserController.post)
 
 
 

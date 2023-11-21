@@ -90,17 +90,6 @@ module.exports  = {
          })
 
       },
-
-
-
-
-
-
-
-
-
-
-
    
    // user Profile using username,password [GET api/user/profile ]-----------------
    
@@ -108,9 +97,10 @@ module.exports  = {
 
    profile : async (req,res) => {
       const userprofile = await UserSchemaa.findOne({ _id:res.token })
+      const user = await PostSchema.find({})
       if(userprofile){
 
-        res.json(userprofile)
+        res.json({userpro:userprofile,usersspro:user})
       } else {
         res.json("user not found")
       }

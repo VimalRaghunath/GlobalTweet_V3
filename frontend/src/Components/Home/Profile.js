@@ -36,6 +36,7 @@ function Profile() {
   return (
 
     <div className='Post'>
+
       <Sidebar/>
       
     <Avatar 
@@ -44,9 +45,9 @@ function Profile() {
     <div className='Postcontent'>
       <div className='Postheader'>
        <div className='Posttitles'>
-          <h3>{state.name}</h3>
-          <h4>{state.username}</h4>
-          <p>{state.bio}</p>
+          <h3>{state?.userpro?.name}</h3>
+          <h4>{state?.userpro?.username}</h4>
+          <p>{state?.userpro?.bio}</p>
        </div>
         
       

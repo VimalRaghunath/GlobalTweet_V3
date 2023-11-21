@@ -3,6 +3,7 @@ import React from 'react'
 import Logo from "./Assets/GlobalTweet.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AxiosInstance } from "./AxiosInstance";
 
 
 
@@ -17,8 +18,8 @@ function CreateanAccount() {
     const username = e.target.username.value;
     const password = e.target.password.value;
     try {
-      const response = await axios.post(
-        "http://localhost:7777/api/user/createanaccount",
+      const response = await AxiosInstance.post(
+        "/api/user/createanaccount",
         {
           name: name,
           email: email,

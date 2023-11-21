@@ -6,6 +6,9 @@ import Home from "./Components/Home/Home"
 import { Routes, Route } from "react-router-dom"
 import NewPost from "./Components/Home/NewPost"
 import Profile from "./Components/Home/Profile"
+import Messages from "./Components/Home/Messages"
+import Explore from "./Components/Home/Explore"
+import Notifications from "./Components/Home/Notifications"
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/newpost" element={<NewPost/>}/>
           <Route path="/profile" element={<Profile/>} />
+          <Route path="/messages" element={<Messages/>} />
+          <Route path="/explore" element={<Explore/>} />
+          <Route path="/notifications" element={<Notifications/>} />
           
         </Routes>
       </div>

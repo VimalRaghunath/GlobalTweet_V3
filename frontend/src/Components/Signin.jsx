@@ -4,6 +4,7 @@ import "./Signin.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
 import { useCookies } from 'react-cookie';
+import { AxiosInstance } from "./AxiosInstance";
 
 function Signin() {
 
@@ -17,8 +18,9 @@ function Signin() {
     const password = e.target.password.value;
 
     try {
-      const response = await axios.post(
-        "http://localhost:7777/api/user/",
+      const response = await AxiosInstance.post(
+        "/api/user/",
+        
         {
           
           username : username,

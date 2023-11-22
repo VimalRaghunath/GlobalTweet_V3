@@ -8,6 +8,7 @@ UserRouter.post('/createanaccount',(UserController.createuser))
 UserRouter.post('/',(UserController.signin))
 UserRouter.get('/profile',Auth,UserController.profile)
 UserRouter.post('/newpost',UserController.post)
+UserRouter.get('/:id/post',UserController.getAllPost)
 
 
 

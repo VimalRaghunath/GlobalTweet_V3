@@ -60,29 +60,6 @@ function Profile() {
     <Widgets/>
      
   </div>
-      
-
-
-
-
-
-
-                                  
-    // {/* name: String,
-    // email: String,
-    // mobile: String,
-    // username: String,
-    // password: String,
-    // id: String,
-    // bio: String,
-    // avatar : String,
-    // following: Array,
-    // followers: Array,
-    // isBlocked */}
-                                     
-
-
-
 
 
   )

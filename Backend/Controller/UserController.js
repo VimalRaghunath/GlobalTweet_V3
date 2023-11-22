@@ -7,7 +7,9 @@ const PostSchema = require("../Model/PostSchema");
 const { joiPostValidationSchema } = require("../Model/ValidationSchema");
 
 module.exports = {
+
   //create a user with name,email,mobile,username,password (POST api/user/createanaccount)--------------
+
 
   createuser: async (req, res) => {
     const { value, error } = joiUserValidationSchema.validate(req.body);
@@ -31,7 +33,9 @@ module.exports = {
     });
   },
 
+
   // user signin using username,password [POST api/user/ ]-----------------
+
 
   signin: async (req, res) => {
     const { value, error } = joiUserValidationSchema.validate(req.body);
@@ -63,7 +67,9 @@ module.exports = {
     }
   },
 
-  //  Post/feed of users [POST api/user/post]--------------------
+
+  // Post/feed of users [POST api/user/newpost]--------------------
+
 
   post: async (req, res) => {
     const { title, description, image, category, likes } = req.body;
@@ -76,19 +82,48 @@ module.exports = {
       category: category,
       likes: likes,
     });
-    res.json(User,'added sucess');
+    res.status(201).json({
+      status: "success",
+      message: "Post added successfully",
+      data: User,
+    });
   },
 
+
   // user Profile using username,password [GET api/user/profile ]-----------------
+
 
   profile: async (req, res) => {
     const userprofile = await UserSchemaa.findOne({ _id: res.token });
     const user = await PostSchema.find({});
     if (userprofile) {
-      res.json({ userpro: userprofile, usersspro: user });
+      res.status(200).json({ userpro: userprofile, usersspro: user });
     } else {
-      res.json("user not found");
+      res.status(403).json("user not found");
     }
   },
+
+
+  // showing all posts in the home to the user [GET api/user/:id/post]---------------------------
+
+
+  getAllPost: async (req, res) => {
+
+    const post = await PostSchema.find({ _id: userId }).populate("post");
+    if (!post) {
+      return res.status(404).json({ error: "No Posts Found" });
+    }
+    res.status(200).json({
+      status: "success",
+      message: "post successfully fetched",
+      data: post,
+    });
+  },
+
+
+
+
+
+
 
 };

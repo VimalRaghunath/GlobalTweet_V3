@@ -68,7 +68,7 @@ module.exports = {
   },
 
 
-  // Post/feed of users [POST api/user/newpost]--------------------
+  // create Post/feed of users [POST api/user/newpost]--------------------
 
 
   post: async (req, res) => {
@@ -104,7 +104,7 @@ module.exports = {
   },
 
 
-  // showing all posts in the home to the user [GET api/user/:id/post]---------------------------
+  // showing all posts in the home to the user [GET api/user/post]---------------------------
 
 
   getAllPost: async (req, res) => {
@@ -119,10 +119,6 @@ module.exports = {
       data: post,
     });
   },
-
-
-
-
 
 
 

@@ -9,6 +9,7 @@ import Profile from "./Components/Home/Profile"
 import Messages from "./Components/Home/Messages"
 import Explore from "./Components/Home/Explore"
 import Notifications from "./Components/Home/Notifications"
+import Post from "./Components/Home/Feed/Post"
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/messages" element={<Messages/>} />
           <Route path="/explore" element={<Explore/>} />
           <Route path="/notifications" element={<Notifications/>} />
+          <Route path="/post" element={<Post/>} />
           
         </Routes>
       </div>

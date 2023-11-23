@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie';
 import Sidebar from './Sidebar/Sidebar';
 import Widgets from './Widgets/Widgets';
 import { AxiosInstance } from '../AxiosInstance';
+import "./Profile.css"
 
 
 
@@ -36,16 +37,16 @@ function Profile() {
   },[])
   return (
 
-    <div className='Post'>
+    <div className='Profile'>
 
       <Sidebar/>
       
     <Avatar 
       src='https://images.unsplash.com/photo-1559065188-2537766d864b?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-      className='Postavatar'/>
-    <div className='Postcontent'>
-      <div className='Postheader'>
-       <div className='Posttitles'>
+      className='Profileavatar'/>
+    <div className='Profilecontent'>
+      <div className='Profileheader'>
+       <div className='Profiletitles'>
           <h3>{state?.userpro?.name}</h3>
           <h4>{state?.userpro?.username}</h4>
           <p>{state?.userpro?.bio}</p>

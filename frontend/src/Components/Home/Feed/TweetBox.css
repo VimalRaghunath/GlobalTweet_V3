@@ -67,3 +67,43 @@
 
 
 
+.TweetBoxform {
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid #eff0f1;
+}
+
+.TweetBoxavatar {
+  margin-right: 15px;
+}
+
+.TweetBoxformfield {
+  flex: 1;
+}
+
+.TweetBoxinput {
+  display: flex;
+  flex-direction: column;
+}
+
+.TweetBoxinput input {
+  flex: 1;
+  border: none;
+  font-size: 16px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  outline-width: 0;
+}
+
+.TweetBoxicons {
+  display: flex;
+  align-items: center;
+}
+
+.TweetBoxicon {
+  color: #1da1f2;
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 20px;
+}

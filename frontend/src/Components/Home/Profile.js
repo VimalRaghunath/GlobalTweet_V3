@@ -34,8 +34,35 @@ function Profile() {
         setState(posts.data)
   
     }
+
     newcookie()
   },[])
+
+  
+  useEffect( () => {
+    async function postcookie(){
+
+      const profileposts =  await AxiosInstance.get(
+          "/api/user/profile/:id",
+          {
+            
+            headers:{
+              Authorization:`bearer ${cookie.cookies}`
+            }
+            
+          }
+        );
+
+        console.log( profileposts.data);
+        setState( profileposts.data)
+  
+    }
+
+    postcookie()
+  },[])
+
+
+
 
 
   return (
@@ -54,15 +81,23 @@ function Profile() {
           <h4>{state?.userpro?.username}</h4>
           <p>{state?.userpro?.bio}</p>
        </div>
-        
-      
-       </div>
+      </div>
+
+      <div className='ProfilePosts'>
+      <h2>User Posts</h2>
+      {state?.userpro?.posts.map((post) => (
+        <div key={post._id}>
+          <p>{post.content}</p>
+        </div>
+      ))}
+    </div>
       
       
     </div>
-
-    <Widgets/>
      
+    <Widgets/>
+    
+   
   </div>
 
 

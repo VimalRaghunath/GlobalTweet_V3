@@ -26,6 +26,7 @@ function App() {
           <Route path="/notifications" element={<Notifications/>} />
           <Route path="/post" element={<Post/>} />
           
+          
         </Routes>
       </div>
     </div>

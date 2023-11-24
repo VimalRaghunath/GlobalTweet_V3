@@ -128,14 +128,14 @@ module.exports = {
 
   profileposts: async (req, res) => {
     const userId = req.params.id;
-    const userprofile = await UserSchemaa.findOne({ _id: userid });
+    const userprofile = await UserSchemaa.findOne({ _id: userId });
 
     if (!userprofile) {
       res.status(404).json({status:"error",message:"user not found"})
     }
 
     const post = await PostSchema.find({userId});
-    
+
     if (!post) {
       return res.status(404).json({ error: "No Posts Found" });
     }

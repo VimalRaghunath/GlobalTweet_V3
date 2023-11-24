@@ -31,7 +31,7 @@ function TweetBox() {
   };
 
   const handleClick = async () => {
-    AxiosInstance.post("/api/user/newpost", state, {
+    AxiosInstance.post(`/api/user/newpost`, state, {
       headers: {
         Authorization: `bearer ${cookie.cookies}`,
       },

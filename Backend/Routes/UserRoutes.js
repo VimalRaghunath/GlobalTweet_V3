@@ -9,7 +9,7 @@ UserRouter.post('/',(UserController.signin))
 UserRouter.get('/profile',Auth,UserController.profile)
 UserRouter.post('/newpost',UserController.post)
 UserRouter.get('/post',UserController.getAllPost)
-
+UserRouter.get('/profile/:id',Auth,UserController.profileposts)
 
 
 

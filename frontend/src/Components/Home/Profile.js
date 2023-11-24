@@ -1,5 +1,4 @@
 import { Avatar } from '@mui/material';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie';
 import Sidebar from './Sidebar/Sidebar';
@@ -14,6 +13,8 @@ function Profile() {
 
   const [state,setState] = useState('')
   const [cookie,setcookie] = useCookies(["cookies"])
+
+  
 
   useEffect( () => {
     async function newcookie (){
@@ -35,6 +36,8 @@ function Profile() {
     }
     newcookie()
   },[])
+
+
   return (
 
     <div className='Profile'>

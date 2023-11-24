@@ -76,6 +76,7 @@ module.exports = {
     console.log(image);
 
     const User = await PostSchema.create({
+      userId: res.token,
       title: title,
       description: description,
       image: image,
@@ -119,6 +120,33 @@ module.exports = {
       data: post,
     });
   },
+
+
+  
+  // showing posts in specific profile [GET api/user/profile/:id]----------------------------
+
+
+  profileposts: async (req, res) => {
+    const userId = req.params.id;
+    const userprofile = await UserSchemaa.findOne({ _id: userid });
+
+    if (!userprofile) {
+      res.status(404).json({status:"error",message:"user not found"})
+    }
+
+    const post = await PostSchema.find({userId});
+    
+    if (!post) {
+      return res.status(404).json({ error: "No Posts Found" });
+    }
+    res.status(200).json({
+      status: "success",
+      message: "post successfully fetched",
+      data: post,
+    });
+    
+  },
+
 
 
 

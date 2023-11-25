@@ -1,10 +1,11 @@
-import { Avatar } from '@mui/material';
+import { Avatar, Button } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie';
 import Sidebar from './Sidebar/Sidebar';
 import Widgets from './Widgets/Widgets';
 import { AxiosInstance } from '../AxiosInstance';
 import "./Profile.css"
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -13,10 +14,11 @@ function Profile() {
 
 
   const [state,setState] = useState('')
-  const [cookie,setcookie] = useCookies(["cookies"])
+  const [cookie,setcookie,removecookie] = useCookies(["cookies"])
   const [mypost,setMypost]= useState([])
+  const navigate = useNavigate()
 
-  
+  console.log(mypost);
 
   useEffect( () => {
     async function newcookie (){
@@ -32,6 +34,17 @@ function Profile() {
           }
         );
 
+        const userposts =  await AxiosInstance.get(
+          "/api/user/profileposts",
+          {
+            
+            headers:{
+              Authorization:`bearer ${cookie.cookies}`
+            }
+            
+          }
+        );
+        setMypost(userposts.data)
         console.log(posts.data);
         setState(posts.data)
   
@@ -88,7 +101,7 @@ function Profile() {
 
       <div className='ProfilePosts'>
       <h2>User Posts</h2>
-      {state?.usersspro?.map((post) => (
+      {mypost?.data?.map((post) => (
         <div key={post._id}>
           <p>{post.description}</p>
           <img  src={post.image} width={300}/>
@@ -101,11 +114,16 @@ function Profile() {
       
       
     </div>
-     
-    <Widgets/>
+
+    <div>
+
+     <Widgets/>
+     <Button onClick={()=>navigate('/')}>Logout</Button>
+    </div>
     
-   
   </div>
+
+
 
 
   )

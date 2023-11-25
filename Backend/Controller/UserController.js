@@ -74,7 +74,7 @@ module.exports = {
   post: async (req, res) => {
     const { title, description, image, category, likes } = req.body;
     console.log(image);
-
+    console.log(res.token);
     const User = await PostSchema.create({
       userId: res.token,
       title: title,
@@ -127,15 +127,15 @@ module.exports = {
 
 
   profileposts: async (req, res) => {
-    const userId = req.params.id;
-    const userprofile = await UserSchemaa.findOne({ _id: userId });
+    
+    const userprofile = await UserSchemaa.findOne({ _id: res.token });
 
     if (!userprofile) {
       res.status(404).json({status:"error",message:"user not found"})
     }
 
-    const post = await PostSchema.find({userId});
-
+    const post = await PostSchema.find({userId: res.token});
+    console.log(post);
     if (!post) {
       return res.status(404).json({ error: "No Posts Found" });
     }

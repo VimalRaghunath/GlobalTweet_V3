@@ -8,11 +8,13 @@ import "./Profile.css"
 
 
 
+
 function Profile() {
 
 
   const [state,setState] = useState('')
   const [cookie,setcookie] = useCookies(["cookies"])
+  const [mypost,setMypost]= useState([])
 
   
 
@@ -38,28 +40,29 @@ function Profile() {
     newcookie()
   },[])
 
-  
-  useEffect( () => {
-    async function postcookie(){
+  console.log(state);
 
-      const profileposts =  await AxiosInstance.get(
-          "/api/user/profile/:id",
-          {
+  // useEffect( () => {
+  //   async function postcookie(){
+
+  //     const profileposts =  await AxiosInstance.get(
+  //         `/api/user/profile/${state.userpro.id}`,
+  //         {
             
-            headers:{
-              Authorization:`bearer ${cookie.cookies}`
-            }
+  //           headers:{
+  //             Authorization:`bearer ${cookie.cookies}`
+  //           }
             
-          }
-        );
+  //         }
+  //       );
 
-        console.log( profileposts.data);
-        setState( profileposts.data)
+  //       console.log( profileposts.data);
+  //       setState( profileposts.data)
   
-    }
+  //   }
 
-    postcookie()
-  },[])
+  //   postcookie()
+  // },[])
 
 
 
@@ -85,11 +88,15 @@ function Profile() {
 
       <div className='ProfilePosts'>
       <h2>User Posts</h2>
-      {state?.userpro?.posts.map((post) => (
+      {state?.usersspro?.map((post) => (
         <div key={post._id}>
-          <p>{post.content}</p>
+          <p>{post.description}</p>
+          <img  src={post.image} width={300}/>
+
         </div>
       ))}
+
+
     </div>
       
       

@@ -118,7 +118,7 @@ function Profile() {
     <div>
 
      <Widgets/>
-     <Button onClick={()=>navigate('/')}>Logout</Button>
+     <Button onClick={()=>navigate('/')} > Logout </Button>
     </div>
     
   </div>

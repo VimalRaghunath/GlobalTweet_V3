@@ -36,8 +36,9 @@ function TweetBox() {
         Authorization: `bearer ${cookie.cookies}`,
       },
     });
+     window.location.reload()
   };
-
+  
   return (
     <div className="TweetBox">
       Create a post

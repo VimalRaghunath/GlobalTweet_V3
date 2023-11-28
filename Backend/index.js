@@ -6,6 +6,8 @@ const UserRouter = require("./Routes/UserRoutes")
 require('dotenv').config()
 const mongoose = require("mongoose")
 const cors = require("cors")
+const socketIO = require("socket.io")
+const io = socketIO()
 
 
 

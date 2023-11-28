@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const UserSchemaa = require("../Model/UserSchemaa");
 const PostSchema = require("../Model/PostSchema");
 const { joiPostValidationSchema } = require("../Model/ValidationSchema");
+const messageSchema = require('../Model/messageSchema')
 
 module.exports = {
 
@@ -76,7 +77,7 @@ module.exports = {
     console.log(image);
     console.log(res.token);
     const User = await PostSchema.create({
-      userId: res.token,
+      userId: res.token.id,
       title: title,
       description: description,
       image: image,
@@ -146,6 +147,10 @@ module.exports = {
     });
     
   },
+
+ 
+ // messsages showing in profile [GET api/user/messages]---------------
+
 
 
   

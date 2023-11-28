@@ -31,12 +31,11 @@ function TweetBox() {
   };
 
   const handleClick = async () => {
-    AxiosInstance.post(`/api/user/newpost`, state, {
+   await AxiosInstance.post(`/api/user/newpost`, state, {
       headers: {
         Authorization: `bearer ${cookie.cookies}`,
       },
     });
-     window.location.reload()
   };
   
   return (

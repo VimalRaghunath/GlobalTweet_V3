@@ -34,6 +34,11 @@ io.on("connection",(socket) => {
   socket.on("message",(data) => {
     io.emit("message", data)
   })
+
+  socket.on("notification", (notificationData) => {
+    io.emit("notification", notificationData)
+  })
+
   socket.on("disconnect", () => {
     console.log("user disconnected");
   })

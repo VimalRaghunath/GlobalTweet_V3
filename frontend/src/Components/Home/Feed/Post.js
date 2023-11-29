@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { connect } from 'react-redux'
 import "./Post.css";
 import { AxiosInstance } from "../../AxiosInstance";
 import {

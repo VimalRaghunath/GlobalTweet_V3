@@ -7,7 +7,10 @@ require('dotenv').config()
 const mongoose = require("mongoose")
 const cors = require("cors")
 const socketIO = require("socket.io")
-const io = socketIO()
+
+
+const http = require("http").createServer(App)
+const io = socketIO(http)
 
 
 
@@ -24,6 +27,17 @@ App.use(cors())
 App.use(express.json())
 App.use("/api/user",UserRouter)
 // App.use("/api/admin",AdminRouter)
+
+io.on("connection",(socket) => {
+  console.log("A user connected");
+
+  socket.on("message",(data) => {
+    io.emit("message", data)
+  })
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  })
+})
 
 
 App.listen(Port,()=>{

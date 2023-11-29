@@ -77,7 +77,7 @@ module.exports = {
     console.log(image);
     console.log(res.token);
     const User = await PostSchema.create({
-      userId: res.token.id,
+      userId: res.token,
       title: title,
       description: description,
       image: image,

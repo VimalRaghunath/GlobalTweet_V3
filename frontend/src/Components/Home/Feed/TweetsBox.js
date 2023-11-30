@@ -28,7 +28,7 @@ function TweetBox() {
 
     const photo = await upload(e.target.files[0]);
     console.log(photo);
-    setState({ ...state, image: photo });
+   await setState({ ...state, image: photo });
 
   };
 
@@ -36,12 +36,15 @@ function TweetBox() {
 
   const handleClick = async () => {
     try {
-      await AxiosInstance.post(`/api/user/newpost`, state, {
-        headers: {
-          Authorization: `bearer ${cookie.cookies}`,
-        },
-      });
-      // const data= await res.data
+      await AxiosInstance.post(`/api/user/newpost`,state,
+      {
+            
+                  headers:{
+                    Authorization:`bearer ${cookie.cookies}`
+                  }
+                  
+                })
+     
     } catch (error) {
       console.log(error);
     }

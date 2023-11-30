@@ -95,6 +95,8 @@ module.exports = {
   post: async (req, res) => {
     try {
       const { title, description, image, category, likes } = req.body;
+      console.log(req.body);
+      console.log(res.token);
   
      
       const userPost = await PostSchema.create({
@@ -113,21 +115,22 @@ module.exports = {
       });
     } catch (error) {
       
-      if (error.name === 'ValidationError') {
-        const errors = Object.values(error.errors).map((err) => err.message);
-        return res.status(400).json({
-          status: 'error',
-          message: 'Validation failed',
-          errors: errors,
-        });
-      }
+      // if (error.name === 'ValidationError') {
+      //   const errors = Object.values(error.errors).map((err) => err.message);
+      //   return res.status(400).json({
+      //     status: 'error',
+      //     message: 'Validation failed',
+      //     errors: errors,
+      //   });
+      // }
   
      
-      console.error('Error creating post:', error);
-      res.status(500).json({
-        status: 'error',
-        message: 'Internal server error',
-      });
+      // console.error('Error creating post:', error);
+      // res.status(500).json({
+      //   status: 'error',
+      //   message: 'Internal server error',
+      // });
+      console.log(error.message);
     }
   },
   

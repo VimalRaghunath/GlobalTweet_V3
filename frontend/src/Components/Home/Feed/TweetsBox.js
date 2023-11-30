@@ -12,6 +12,7 @@ import {
 import upload from "../../Cloudinary";
 import { AxiosInstance } from "../../AxiosInstance";
 import { useCookies } from "react-cookie";
+import axios from "axios";
 
 function TweetBox() {
   const [cookie, setcookie] = useCookies(["cookies"]);
@@ -31,13 +32,18 @@ function TweetBox() {
   };
 
   const handleClick = async () => {
-   await AxiosInstance.post(`/api/user/newpost`, state, {
-      headers: {
-        Authorization: `bearer ${cookie.cookies}`,
-      },
-    });
+    try {
+      await axios.post(`http://localhost:7777/api/user/newpost`, state, {
+        headers: {
+          Authorization: `bearer ${cookie.cookies}`,
+        },
+      });
+      // const data= await res.data
+    } catch (error) {
+      console.log(error);
+    }
   };
-  
+
   return (
     <div className="TweetBox">
       Create a post

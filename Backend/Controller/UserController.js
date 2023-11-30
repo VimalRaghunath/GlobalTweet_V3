@@ -72,24 +72,65 @@ module.exports = {
   // create Post/feed of users [POST api/user/newpost]--------------------
 
 
+  // post: async (req, res) => {
+  //   const { title, description, image, category,likes} = req.body;
+  //   console.log(image);
+  //   console.log(res.token);
+  //   const User = await PostSchema.create({
+  //     userId: res.token,
+  //     title: title,
+  //     description: description,
+  //     image: image,
+  //     category: category,
+  //     likes:likes
+      
+  //   });
+  //   res.status(201).json({
+  //     status: "success",
+  //     message: "Post added successfully",
+  //     data: User,
+  //   });
+  // },
+
   post: async (req, res) => {
-    const { title, description, image, category, likes } = req.body;
-    console.log(image);
-    console.log(res.token);
-    const User = await PostSchema.create({
-      userId: res.token,
-      title: title,
-      description: description,
-      image: image,
-      category: category,
-      likes: likes,
-    });
-    res.status(201).json({
-      status: "success",
-      message: "Post added successfully",
-      data: User,
-    });
+    try {
+      const { title, description, image, category, likes } = req.body;
+  
+     
+      const userPost = await PostSchema.create({
+        userId: res.token,
+        title: title,
+        description: description,
+        image: image,
+        category: category,
+        likes: likes,
+      });
+  
+      res.status(201).json({
+        status: "success",
+        message: "Post added successfully",
+        data: userPost,
+      });
+    } catch (error) {
+      
+      if (error.name === 'ValidationError') {
+        const errors = Object.values(error.errors).map((err) => err.message);
+        return res.status(400).json({
+          status: 'error',
+          message: 'Validation failed',
+          errors: errors,
+        });
+      }
+  
+     
+      console.error('Error creating post:', error);
+      res.status(500).json({
+        status: 'error',
+        message: 'Internal server error',
+      });
+    }
   },
+  
 
 
   // user Profile using username,password [GET api/user/profile ]-----------------

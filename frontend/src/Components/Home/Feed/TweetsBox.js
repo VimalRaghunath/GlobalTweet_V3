@@ -29,11 +29,14 @@ function TweetBox() {
     const photo = await upload(e.target.files[0]);
     console.log(photo);
     setState({ ...state, image: photo });
+
   };
+
+  console.log(state);
 
   const handleClick = async () => {
     try {
-      await axios.post(`http://localhost:7777/api/user/newpost`, state, {
+      await AxiosInstance.post(`/api/user/newpost`, state, {
         headers: {
           Authorization: `bearer ${cookie.cookies}`,
         },

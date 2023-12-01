@@ -121,7 +121,7 @@ function Profile() {
      <div>
        <Button>Edit Profile</Button>
      </div>
-     <Button onClick={()=>navigate('/')} > Logout </Button>
+     <Button className='Logout' onClick={()=>navigate('/')} > Logout </Button>
     </div>
     
   </div>

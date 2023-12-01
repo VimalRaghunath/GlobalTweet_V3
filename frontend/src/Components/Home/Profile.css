@@ -23,3 +23,20 @@
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a box shadow for better visibility */
 }
 
+
+.Logout{
+
+  display: flex;
+  align-items: center;
+  background-color: rgb(33, 31, 31);
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+  border-radius: 20px;
+  padding: 1px 30px 1px 30px;
+  border: 1px solid;
+  width: 150px;
+  text-align: center;
+
+}
+

@@ -118,6 +118,9 @@ function Profile() {
     <div>
 
      <Widgets/>
+     <div>
+       <Button>Edit Profile</Button>
+     </div>
      <Button onClick={()=>navigate('/')} > Logout </Button>
     </div>
     

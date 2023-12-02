@@ -29,7 +29,7 @@ function Explore() {
 
       <Sidebar/>
      
-      <div>
+      <div className='Exploree'>
       <TextField
         label="Search"
         variant="outlined"
@@ -48,7 +48,7 @@ function Explore() {
 
     </div>
 
-     <Widgets/>
+   
 
     </div>
   )

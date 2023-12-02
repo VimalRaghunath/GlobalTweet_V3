@@ -1,11 +1,14 @@
 .Profile{
-    
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid;
+  display: flex;
+
+  justify-content:center;
+
+  padding-top: 50px;
+  position: relative;
+  left: 80px;
+  
 }
+
 
 .Profileavatar{
   display: flex;
@@ -13,17 +16,32 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-left: 17%;
+  
+}
+.Profiletitles h3,.Profiletitles h4{
+ 
+  margin-block-start:0 ;
 }
 
 .Profileheader{
-  width: 70%;
+  display: flex;
+  gap:15px;
   background-color: #fff; /* Add your desired background color */
   padding: 10px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a box shadow for better visibility */
 }
 
+.ProfilePosts{
+  width: 80%;
+}
 
+
+.Profilecontent{
+  flex-basis: 60%;
+}
+.widgets{
+  flex-basis: 40%;
+}
 .Logout{
 
   display: flex;

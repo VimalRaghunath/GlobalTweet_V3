@@ -6,6 +6,7 @@ import Widgets from './Widgets/Widgets';
 import { AxiosInstance } from '../AxiosInstance';
 import "./Profile.css"
 import { useNavigate } from 'react-router-dom';
+import Editprofile from './Editprofile';
 
 
 
@@ -17,6 +18,7 @@ function Profile() {
   const [cookie,setcookie,removecookie] = useCookies(["cookies"])
   const [mypost,setMypost]= useState([])
   const navigate = useNavigate()
+  const [editProfileOpen, setEditProfileOpen] = useState(false)
 
   console.log(mypost);
 
@@ -53,7 +55,18 @@ function Profile() {
     newcookie()
   },[])
 
+
+
+
   console.log(state);
+
+  const handleEditProfileClick = () => {
+    setEditProfileOpen(true);
+  };
+
+  const handleCloseEditProfile = () => {
+    setEditProfileOpen(false);
+  };
 
   // useEffect( () => {
   //   async function postcookie(){
@@ -119,10 +132,12 @@ function Profile() {
 
      <Widgets/>
      <div>
-       <Button>Edit Profile</Button>
+       <Button onClick={handleEditProfileClick}>Edit Profile</Button>
      </div>
      <Button className='Logout' onClick={()=>navigate('/')} > Logout </Button>
     </div>
+
+     <Editprofile open={editProfileOpen} onClose={handleCloseEditProfile}/>
     
   </div>
 

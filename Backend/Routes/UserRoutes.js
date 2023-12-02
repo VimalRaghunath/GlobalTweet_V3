@@ -12,7 +12,7 @@ UserRouter.get('/profile',Auth,UserController.profile)
 UserRouter.post('/newpost',Auth,UserController.post)
 UserRouter.get('/post',UserController.getAllPost)
 UserRouter.get('/profileposts',Auth,UserController.profileposts)
-
+UserRouter.get('/explore',(UserController.Explore))
 
 
 

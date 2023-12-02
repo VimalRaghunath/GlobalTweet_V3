@@ -16,27 +16,23 @@ import axios from "axios";
 
 function TweetBox() {
   const [cookie, setcookie] = useCookies(["cookies"]);
-  const [state, setState] = useState({
-    title: "",
-    image: "",
-    description: "",
-    category: "",
-  });
-
+  const [file,setFile] = useState(" ")
+  
   const handleUpload = async (e) => {
     e.preventDefault();
 
-    const photo = await upload(e.target.files[0]);
+
+    const photo = await upload(file);
     console.log(photo);
-   await setState({ ...state, image: photo });
+   
 
-  };
-
-  console.log(state);
-
-  const handleClick = async () => {
     try {
-      await AxiosInstance.post(`/api/user/newpost`,state,
+      await AxiosInstance.post(`/api/user/newpost`,{
+        title: "",
+        image: photo,
+        description: e.target.description.value,
+        category: "",
+      },
       {
             
                   headers:{
@@ -50,17 +46,20 @@ function TweetBox() {
     }
   };
 
+  
+
+
   return (
     <div className="TweetBox">
       Create a post
-      <form className="TweetBoxform">
+      <form className="TweetBoxform" onSubmit={handleUpload}>
         <Avatar
           className="TweetBoxavatar"
           src="https://images.unsplash.com/photo-1559065188-2537766d864b?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         />
         <div className="TweetBoxformfield">
           <div className="TweetBoxinput">
-            <input type="text" placeholder="What's happening" />
+            <input id="description" type="text" placeholder="What's happening" />
           </div>
           <div className="TweetBoxinput">
             <div className="TweetBoxicons">
@@ -70,7 +69,7 @@ function TweetBox() {
                 <input
                   type="file"
                   style={{ opacity: 0, width: 10, position: "absolute" }}
-                  onChange={handleUpload}
+                  onChange={(e)=>{setFile(e.target.files[0])}}
                 />
               </IconButton>
               <IconButton>
@@ -89,7 +88,7 @@ function TweetBox() {
                 <LocationCityOutlined className="TweetBoxicon" />
               </IconButton>
             </div>
-            <Button className="TweetButton" onClick={handleClick}>
+            <Button type="submit" className="TweetButton" >
               Post
             </Button>
           </div>

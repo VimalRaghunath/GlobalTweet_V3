@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-
 const { joiUserValidationSchema } = require("../Model/ValidationSchema");
 const jwt = require("jsonwebtoken");
 const UserSchemaa = require("../Model/UserSchemaa");
@@ -98,7 +97,7 @@ module.exports = {
       console.log(req.body);
       console.log(res.token);
   
-     
+     console.log(description);
       const userPost = await PostSchema.create({
         userId: res.token,
         title: title,
@@ -191,6 +190,37 @@ module.exports = {
     });
     
   },
+
+
+
+  // explore/search option [GET api/user/explore]--------------------
+
+  Explore: async (req, res) => {
+    try {
+      const { query } = req.query;
+  
+      if (!query) {
+        return res.status(400).json({ message: 'Query parameter is required' });
+      }
+  
+      const regex = new RegExp(query, 'i');
+  
+      const results = await Tweet.find({ text: regex });
+  
+      res.json(results);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  },
+
+
+
+
+
+
+
+
 
  
  // messsages showing in profile [GET api/user/messages]---------------

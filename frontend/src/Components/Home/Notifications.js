@@ -21,7 +21,9 @@ const Notifications = () => {
 
       <Button onClick={sendNotification}>Send Notification</Button>
 
-      
+      <h2> Notifications </h2>
+
+
      
 
     </div>

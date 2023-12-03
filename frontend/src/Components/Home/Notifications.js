@@ -20,6 +20,8 @@ const Notifications = () => {
       <Sidebar/>
 
       <Button onClick={sendNotification}>Send Notification</Button>
+
+      
      
 
     </div>

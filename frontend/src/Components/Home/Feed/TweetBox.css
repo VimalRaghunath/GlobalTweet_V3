@@ -1,4 +1,4 @@
-.TweetBox{
+ .TweetBox{
     width: 100%;
     display: flex;
     padding: 0.5rem 1rem;
@@ -63,10 +63,6 @@
 
 }
 
-
-
-
-
 .TweetBoxform {
   display: flex;
   padding: 20px;
@@ -106,4 +102,13 @@
   font-size: 24px;
   cursor: pointer;
   margin-right: 20px;
-}
+} 
+
+
+
+
+
+
+
+
+

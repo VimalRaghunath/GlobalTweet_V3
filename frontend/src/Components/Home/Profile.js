@@ -7,6 +7,19 @@ import { AxiosInstance } from "../AxiosInstance";
 import "./Profile.css";
 import { useNavigate } from "react-router-dom";
 import Editprofile from "./Editprofile";
+import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  IconButton,
+  Typography,
+} from "@mui/material";
+
 
 function Profile() {
   const [state, setState] = useState("");
@@ -92,7 +105,7 @@ function Profile() {
             </div>
           </div>
 
-          <div className="ProfilePosts">
+          {/* <div className="ProfilePosts">
             <h2>User Posts</h2>
             {mypost?.data?.map((post) => (
               <div key={post._id}>
@@ -101,7 +114,44 @@ function Profile() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
+
+  <div> 
+<Card sx={{ maxWidth: 545 }}>
+  {mypost?.data?.map((post) => (
+    <div key={post._id}>
+      <CardHeader
+        avatar={<Avatar aria-label="recipe">R</Avatar>}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title="Helloooo"
+        subheader="September 14, 2016"
+      />
+      <CardMedia component="img" image={post.image} alt="Paella dish" />
+      <CardContent>
+        <Typography variant="body2" color="text.secondary">
+          {post.description}
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteBorderRoundedIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareRoundedIcon />
+        </IconButton>
+      </CardActions>
+    </div>
+  ))}
+</Card>
+</div>     
+</div>     
+
+   
+
 
         <div className="Widgets" >
           <Widgets/>
@@ -113,8 +163,11 @@ function Profile() {
 
         <Editprofile open={editProfileOpen} onClose={handleCloseEditProfile}/>
       </div>
-    </>
-  );
+      
+      </>
+  ); 
 }
+
+
 
 export default Profile;

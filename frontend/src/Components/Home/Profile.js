@@ -95,7 +95,8 @@ function Profile() {
         <div className="Profilecontent">
           <div className="Profileheader">
               <Avatar
-                src=""
+                src={state?.userpro?.avatar} 
+                alt={state?.userpro?.username}
                 className="Profileavatar"
               />
             <div className="Profiletitles">

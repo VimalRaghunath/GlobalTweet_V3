@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import uploadAvatar from '../CloudinaryAvatar';
 
 function Editprofile({ open, onClose }) {
 
@@ -9,11 +10,14 @@ function Editprofile({ open, onClose }) {
   return (
     <div>
        <Dialog open={open} onClose={onClose}>
+      
       <DialogTitle>Edit Profile</DialogTitle>
       <DialogContent>
-        <TextField label="Name" fullWidth />
-        <TextField label="Username" fullWidth />
-        <TextField label="Bio" fullWidth multiline rows={3} />
+      <TextField type='file' fullWidth />
+
+        <TextField label="Name" fullWidth defaultValue={{}} />
+        <TextField label="Username" fullWidth defaultValue={{}}/>
+        <TextField label="Bio" fullWidth multiline rows={3} defaultValue={{}}/>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>

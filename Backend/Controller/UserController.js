@@ -26,6 +26,7 @@ module.exports = {
       mobile,
       username,
       password,
+      
     });
     res.status(200).json({
       status: "success",
@@ -215,6 +216,27 @@ module.exports = {
   },
 
 
+  // Editprofile of user [PUT api/user/editprofile]------------------------
+
+  
+  Editprofile: async (req,res) => {
+    
+    const { avatar, name, username, Bio} = req.body;
+    const editprofile = UserSchemaa.findOne({_id: res.token })
+     if(editprofile){
+       await UserSchemaa.findByIdAndUpdate(res.token, {
+        $set:{ 
+               avatar : avatar,
+               username : username, 
+               name : name,
+               Bio : Bio
+             }   
+       })
+        res.status(200).json("Successful")
+     }  else {
+        res.status(404).json("error")
+     }
+  }
 
 
 

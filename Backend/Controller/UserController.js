@@ -59,7 +59,7 @@ module.exports = {
         {
           id: User._id,
         },
-        process.env.USER_ACCESS_TOKEN_SECRET
+        process.env.USER_ACCESS_TOKEN_SECRET 
       );
 
       res
@@ -99,13 +99,16 @@ module.exports = {
       console.log(res.token);
   
      console.log(description);
+
       const userPost = await PostSchema.create({
+        
         userId: res.token,
         title: title,
         description: description,
         image: image,
         category: category,
         likes: likes,
+
       });
   
       res.status(201).json({

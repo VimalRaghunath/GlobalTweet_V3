@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const uploadAvatar = async (File) => {
+export const  uploadAvatar = async (File) => {
     const data = new FormData();
     data.append("file",File)
     console.log(File)
@@ -29,5 +29,3 @@ const uploadAvatar = async (File) => {
         throw error;
     }
 };
-
-export default uploadAvatar;

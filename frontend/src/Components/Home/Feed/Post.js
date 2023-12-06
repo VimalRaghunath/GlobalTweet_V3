@@ -25,7 +25,7 @@ function Post() {
   useEffect(() => {
     async function getall() {
       const posts = await AxiosInstance.get("/api/user/post");
-      console.log(post);
+      // console.log(post);
       setPosts(posts.data);
       console.log("post",posts.data);
     }

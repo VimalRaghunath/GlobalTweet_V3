@@ -28,7 +28,7 @@ function Profile() {
   const navigate = useNavigate();
   const [editProfileOpen, setEditProfileOpen] = useState(false);
 
-  console.log(mypost);
+  // console.log(mypost);
 
   useEffect(() => {
     async function newcookie() {
@@ -51,7 +51,7 @@ function Profile() {
     newcookie();
   }, []);
 
-  console.log(state);
+  // console.log(state);
 
   const handleEditProfileClick = () => {
     setEditProfileOpen(true);
@@ -95,7 +95,7 @@ function Profile() {
         <div className="Profilecontent">
           <div className="Profileheader">
               <Avatar
-                src={state?.userpro?.avatar} 
+                src={state?.userpro?.Avatar} 
                 alt={state?.userpro?.username}
                 className="Profileavatar"
               />

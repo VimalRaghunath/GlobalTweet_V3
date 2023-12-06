@@ -4,9 +4,11 @@ const joiUserValidationSchema = Joi.object({
     
     name: Joi.string(),
     email: Joi.string(),
-    mobile: Joi.string(),
+    mobile: Joi.number(),
     username: Joi.string(),
     password: Joi.string(),
+    bio:Joi.string(),
+    avatar:Joi.string()
     
 
 });

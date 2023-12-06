@@ -23,7 +23,7 @@ function TweetBox() {
 
 
     const photo = await upload(file);
-    console.log(photo);
+    // console.log(photo);
    
 
     try {

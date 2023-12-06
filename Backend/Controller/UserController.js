@@ -18,7 +18,7 @@ module.exports = {
       return res.json(error.message);
     }
 
-    const { name, email, mobile, username, password } = value;
+    const { name, email, mobile, username, password  } = value;
 
     await UserSchemaa.create({
       name,
@@ -180,7 +180,7 @@ module.exports = {
     }
 
     const post = await PostSchema.find({userId: res.token});
-    console.log(post);
+    // console.log(post);
     if (!post) {
       return res.status(404).json({ error: "No Posts Found" });
     }
@@ -221,22 +221,40 @@ module.exports = {
   
   Editprofile: async (req,res) => {
     
-    const { avatar, name, username, Bio} = req.body;
+    const { name, username, Bio} = req.body;
     const editprofile = UserSchemaa.findOne({_id: res.token })
      if(editprofile){
        await UserSchemaa.findByIdAndUpdate(res.token, {
         $set:{ 
-               avatar : avatar,
+             
                username : username, 
                name : name,
-               Bio : Bio
+               bio : Bio
              }   
        })
         res.status(200).json("Successful")
      }  else {
         res.status(404).json("error")
      }
-  }
+  },
+
+  EditAvatar: async (req,res) => {
+    const { avatar ,id } = req.body;
+    console.log(id);
+    const editavatar = UserSchemaa.findOne({_id:id })
+    // console.log(res.token);
+     if(editavatar){
+      await UserSchemaa.findByIdAndUpdate(id, {
+        $set:{
+               Avatar:avatar
+             }
+      })
+        res.status(200).json("Avatar Succesful")
+     } else {
+        res.status(404).json("error")
+     }
+  },
+   
 
 
 

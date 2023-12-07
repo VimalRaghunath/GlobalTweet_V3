@@ -21,12 +21,14 @@ import {
 } from "@mui/material";
 
 
+
 function Profile() {
   const [state, setState] = useState("");
   const [cookie, setcookie, removecookie] = useCookies(["cookies"]);
   const [mypost, setMypost] = useState([]);
   const navigate = useNavigate();
   const [editProfileOpen, setEditProfileOpen] = useState(false);
+
 
   // console.log(mypost);
 
@@ -46,6 +48,7 @@ function Profile() {
       setMypost(userposts.data);
       console.log(posts.data);
       setState(posts.data);
+    
     }
 
     newcookie();

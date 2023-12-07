@@ -158,7 +158,7 @@ module.exports = {
 
   getAllPost: async (req, res) => {
 
-    const post = await PostSchema.find();
+    const post = await PostSchema.find().populate("userId");
     if (!post) {
       return res.status(404).json({ error: "No Posts Found" });
     }

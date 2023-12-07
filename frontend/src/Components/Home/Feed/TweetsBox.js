@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./TweetBox.css";
 import { Avatar, Button, IconButton } from "@mui/material";
 import {
@@ -16,50 +16,61 @@ import axios from "axios";
 
 function TweetBox() {
   const [cookie, setcookie] = useCookies(["cookies"]);
-  const [file,setFile] = useState(" ")
-  
+  const [file, setFile] = useState(" ");
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    async function getUser() {
+      const posts = await AxiosInstance.get("/api/user/profile", {
+        headers: {
+          Authorization: `bearer ${cookie.cookies}`,
+        },
+      });
+
+      setUser(posts.data);
+    }
+
+    getUser();
+  }, []);
+
   const handleUpload = async (e) => {
     e.preventDefault();
 
-
     const photo = await upload(file);
     // console.log(photo);
-   
 
     try {
-      await AxiosInstance.post(`/api/user/newpost`,{
-        title: "",
-        image: photo,
-        description: e.target.description.value,
-        category: "",
-      },
-      {
-            
-                  headers:{
-                    Authorization:`bearer ${cookie.cookies}`
-                  }
-                  
-                })
-     
+      await AxiosInstance.post(
+        `/api/user/newpost`,
+        {
+          title: "",
+          image: photo,
+          description: e.target.description.value,
+          category: "",
+        },
+        {
+          headers: {
+            Authorization: `bearer ${cookie.cookies}`,
+          },
+        }
+      );
     } catch (error) {
       console.log(error);
     }
   };
 
-  
-
-
   return (
     <div className="TweetBox">
       Create a post
       <form className="TweetBoxform" onSubmit={handleUpload}>
-        <Avatar
-          className="TweetBoxavatar"
-          src="https://images.unsplash.com/photo-1559065188-2537766d864b?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        />
+        <Avatar className="TweetBoxavatar" src={user?.userpro?.Avatar} />
         <div className="TweetBoxformfield">
           <div className="TweetBoxinput">
-            <input id="description" type="text" placeholder="What's happening" />
+            <input
+              id="description"
+              type="text"
+              placeholder="What's happening"
+            />
           </div>
           <div className="TweetBoxinput">
             <div className="TweetBoxicons">
@@ -69,7 +80,9 @@ function TweetBox() {
                 <input
                   type="file"
                   style={{ opacity: 0, width: 10, position: "absolute" }}
-                  onChange={(e)=>{setFile(e.target.files[0])}}
+                  onChange={(e) => {
+                    setFile(e.target.files[0]);
+                  }}
                 />
               </IconButton>
               <IconButton>
@@ -88,7 +101,7 @@ function TweetBox() {
                 <LocationCityOutlined className="TweetBoxicon" />
               </IconButton>
             </div>
-            <Button type="submit" className="TweetButton" >
+            <Button type="submit" className="TweetButton">
               Post
             </Button>
           </div>

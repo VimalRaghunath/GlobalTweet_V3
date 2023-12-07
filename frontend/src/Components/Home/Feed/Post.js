@@ -55,13 +55,13 @@ function Post() {
   {post.data?.map((postItem, index) => (
     <div key={index}>
       <CardHeader
-        avatar={<Avatar aria-label="recipe">R</Avatar>}
+        avatar={<Avatar aria-label="recipe" src={postItem?.userId.Avatar} />}
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title="Helloooo"
+        title={postItem?.userId.username}
         subheader="September 14, 2016"
       />
       <CardMedia component="img" image={postItem?.image} alt="Paella dish" />

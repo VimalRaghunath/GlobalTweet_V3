@@ -12,12 +12,12 @@ import { useCookies } from "react-cookie";
 import { uploadAvatar } from "../CloudinaryAvatar";
 
 function Editprofile({ open, onClose }) {
+  
   const [avatar, setAvatar] = useState();
-  // console.log(avatar);
   const [cookie, setcookie, removecookie] = useCookies(["cookies"]);
   const [state, setState] = useState("");
 
-  // console.log(state);
+  
 
   useEffect(() => {
     async function newcookie() {

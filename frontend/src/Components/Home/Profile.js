@@ -93,7 +93,6 @@ function Profile() {
       </div>
     <div className="Profile">
       
-
      
         <div className="Profilecontent">
           <div className="Profileheader">
@@ -121,6 +120,7 @@ function Profile() {
         </div> */}
 
   <div> 
+    <u><h2 style={{textAlign:"center"}}>All Posts</h2></u>
 <Card sx={{ maxWidth: 545 }}>
   {mypost?.data?.map((post) => (
     <div key={post._id}>

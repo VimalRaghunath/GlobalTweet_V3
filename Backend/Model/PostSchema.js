@@ -7,7 +7,9 @@ const PostSchema = new mongoose.Schema({
     image: { type: String},
     category: { type: String },
     likes: { type: String}, //like details about users,count
-    tweet: { type: String }
-})
+    tweet: { type: String },
+   
+}
+, {timestamps: true})
 
 module.exports = mongoose.model("Post",PostSchema)

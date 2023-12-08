@@ -94,7 +94,7 @@ module.exports = {
 
   post: async (req, res) => {
     try {
-      const { title, description, image, category, likes } = req.body;
+      const { title, description, image, category, likes, } = req.body;
       console.log(req.body);
       console.log(res.token);
   

@@ -20,8 +20,6 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 function Post() {
   const [post, setPosts] = useState([]);
 
-  
-
   useEffect(() => {
     async function getall() {
       const posts = await AxiosInstance.get("/api/user/post");
@@ -49,6 +47,7 @@ function Post() {
 
   return (
     <div >
+      
       <h2> posts</h2>
 
       <Card sx={{ maxWidth: 545 }}>
@@ -61,9 +60,18 @@ function Post() {
             <MoreVertIcon />
           </IconButton>
         }
+
+        
         title={postItem?.userId.username}
-        subheader="September 14, 2016"
+        subheader={(() => {
+          const timestamp = new Date(postItem?.createdAt);
+          const day = timestamp.getDate();
+          const month = timestamp.getMonth() + 1; // Months are zero-based
+          const year = timestamp.getFullYear();
+          return `${day}-${month}-${year}`;
+        })()}
       />
+    
       {postItem?.image  ? <CardMedia component="img" image={postItem?.image} alt="Paella dish" />:null}
       <CardContent>
         <Typography variant="body2" color="text.secondary">

@@ -143,7 +143,7 @@ function Profile() {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" >
           <FavoriteBorderRoundedIcon />
         </IconButton>
         <IconButton aria-label="share">

@@ -60,16 +60,6 @@ function Post() {
             <MoreVertIcon />
           </IconButton>
         }
-
-        
-        title={postItem?.userId.username}
-        subheader={(() => {
-          const timestamp = new Date(postItem?.createdAt);
-          const day = timestamp.getDate();
-          const month = timestamp.getMonth() + 1; // Months are zero-based
-          const year = timestamp.getFullYear();
-          return `${day}-${month}-${year}`;
-        })()}
       />
     
       {postItem?.image  ? <CardMedia component="img" image={postItem?.image} alt="Paella dish" />:null}

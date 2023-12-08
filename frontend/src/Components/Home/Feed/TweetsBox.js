@@ -35,49 +35,35 @@ function TweetBox() {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    if (file) {
+    
+    const photo = await upload(file);
+    console.log(photo);
       
-      const photo = await upload(file);
-      try {
-        await AxiosInstance.post(
-          `/api/user/newpost`,
-          {
-            title: "",
-            image: photo,
-            description: e.target.description.value,
-            category: "",
-          },
-          {
-            headers: {
-              Authorization: `bearer ${cookie.cookies}`,
+        try {
+          await AxiosInstance.post(
+            `/api/user/newpost`,
+            {
+              title: "",
+              image: photo || "",
+              description: e.target.description.value || "",
+              category: "",
             },
-          }
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    }else{
-    // console.log(photo);
-
-    try {
-      await AxiosInstance.post(
-        `/api/user/newpost`,
-        {
-          title: "",
-          image: "",
-          description: e.target.description.value,
-          category: "",
-        },
-        {
-          headers: {
-            Authorization: `bearer ${cookie.cookies}`,
-          },
+            {
+              headers: {
+                Authorization: `bearer ${cookie.cookies}`,
+              },
+            }
+          );
+        } catch (error) {
+          console.log(error.message);
         }
-      );
-    } catch (error) {
-      console.log(error);
-    }}
+   
+      
+         
   };
+
+
+  
 
   return (
     <div className="TweetBox">

@@ -96,9 +96,9 @@ module.exports = {
     try {
       const { title, description, image, category, likes, } = req.body;
       console.log(req.body);
-      console.log(res.token);
+      // console.log(res.token);
   
-     console.log(description);
+    //  console.log(description);
 
       const userPost = await PostSchema.create({
         

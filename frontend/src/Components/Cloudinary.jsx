@@ -2,6 +2,7 @@ import axios from "axios";
 
 const upload = async (File) => {
     const data = new FormData();
+    console.log(data);
     data.append("file",File)
     console.log(File)
     data.append("upload_preset","GlobalTweet")

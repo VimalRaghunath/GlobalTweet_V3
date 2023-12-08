@@ -70,6 +70,7 @@ function Editprofile({ open, onClose }) {
     <div>
       <Dialog open={open} onClose={onClose}>
         <DialogTitle>Edit Profile</DialogTitle>
+        
         <DialogContent component="form" onSubmit={handleSubmit}>
           <TextField type="file" onChange={(e) => UploadAvatar(e)} fullWidth />
           <Button onClick={handleupload}>upload</Button>

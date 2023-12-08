@@ -64,7 +64,7 @@ function Post() {
         title={postItem?.userId.username}
         subheader="September 14, 2016"
       />
-      <CardMedia component="img" image={postItem?.image} alt="Paella dish" />
+      {postItem?.image  ? <CardMedia component="img" image={postItem?.image} alt="Paella dish" />:null}
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {postItem?.description}

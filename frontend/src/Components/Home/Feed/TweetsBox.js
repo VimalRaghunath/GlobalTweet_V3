@@ -16,7 +16,7 @@ import axios from "axios";
 
 function TweetBox() {
   const [cookie, setcookie] = useCookies(["cookies"]);
-  const [file, setFile] = useState(" ");
+  const [file, setFile] = useState("");
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -35,8 +35,28 @@ function TweetBox() {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-
-    const photo = await upload(file);
+    if (file) {
+      
+      const photo = await upload(file);
+      try {
+        await AxiosInstance.post(
+          `/api/user/newpost`,
+          {
+            title: "",
+            image: photo,
+            description: e.target.description.value,
+            category: "",
+          },
+          {
+            headers: {
+              Authorization: `bearer ${cookie.cookies}`,
+            },
+          }
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    }else{
     // console.log(photo);
 
     try {
@@ -44,7 +64,7 @@ function TweetBox() {
         `/api/user/newpost`,
         {
           title: "",
-          image: photo,
+          image: "",
           description: e.target.description.value,
           category: "",
         },
@@ -56,7 +76,7 @@ function TweetBox() {
       );
     } catch (error) {
       console.log(error);
-    }
+    }}
   };
 
   return (

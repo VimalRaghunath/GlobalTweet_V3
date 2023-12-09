@@ -125,13 +125,13 @@ function Profile() {
   {mypost?.data?.map((post) => (
     <div key={post._id}>
       <CardHeader
-        avatar={<Avatar aria-label="recipe" src={post?.userId.Avatar} />}
+        avatar={<Avatar aria-label="recipe" src={post?.userId?.Avatar} />}
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title={post?.userId.username}
+        title={post?.userId?.username}
         subheader="September 14, 2016"
       />
       {post?.image  ? <CardMedia component="img" image={post?.image} alt="Paella dish" />:null}

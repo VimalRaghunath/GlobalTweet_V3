@@ -8,7 +8,7 @@ const PostSchema = new mongoose.Schema({
     category: { type: String },
     likes: { type: String}, //like details about users,count
     tweet: { type: String },
-    Date:{type:Date,default:Date.now}
+    // Date:{type:Date,default:Date.now}
    
 })
 

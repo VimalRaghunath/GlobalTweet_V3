@@ -48,7 +48,7 @@ function Post() {
   return (
     <div >
       
-      <h2> posts</h2>
+      <h2> posts </h2>
 
       <Card sx={{ maxWidth: 545 }}>
   {post.data?.map((postItem, index) => (
@@ -60,6 +60,8 @@ function Post() {
             <MoreVertIcon />
           </IconButton>
         }
+        title={postItem?.userId?.username}
+        subheader="September 14, 2016"
       />
     
       {postItem?.image  ? <CardMedia component="img" image={postItem?.image} alt="Paella dish" />:null}

@@ -76,14 +76,14 @@ function Editprofile({ open, onClose }) {
           <Button onClick={handleupload}>upload</Button>
         </DialogContent>
         <DialogContent>
-          <TextField label="Name" fullWidth defaultValue={{}} />
-          <TextField label="Username" fullWidth defaultValue={{}} />
+          <TextField label="Name" fullWidth defaultValue={""} />
+          <TextField label="Username" fullWidth defaultValue={""} />
           <TextField
             label="Bio"
             fullWidth
             multiline
             rows={3}
-            defaultValue={{}}
+            defaultValue={""}
           />
         </DialogContent>
         <DialogActions>

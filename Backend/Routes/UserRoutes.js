@@ -15,6 +15,7 @@ UserRouter.get('/profileposts',Auth,UserController.profileposts)
 UserRouter.get('/explore',(UserController.Explore))
 UserRouter.put('/editprofile',(UserController.Editprofile))
 UserRouter.put('/editavatar',(UserController.EditAvatar))
+UserRouter.get('/allusers',(UserController.Getallusers))
 
 
 

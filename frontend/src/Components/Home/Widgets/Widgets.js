@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import "./Widgets.css"
 import List from "@mui/material/List"
 import ListItem from '@mui/material/ListItem';
@@ -7,11 +7,24 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import { AxiosInstance } from '../../AxiosInstance';
 
 function Widgets() {
  
- const [state,setState] = useState("")
- const [peoples,setPeoples] = useState()
+//  const [state,setState] = useState("")
+ const [peoples,setPeoples] = useState([])
+console.log(peoples);
+
+
+ useEffect(() => {
+  async function getall() {
+    const profiles = await AxiosInstance.get("/api/user/allusers");
+    // console.log(post);
+    setPeoples(profiles.data);
+    // console.log("profiles",profiles.data);
+  }
+  getall();
+}, []);
 
 
   return (
@@ -20,13 +33,13 @@ function Widgets() {
          
 
        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      
+      {peoples?.map((name)=>(
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          <Avatar alt="Remy Sharp" src={name?.Avatar} />
         </ListItemAvatar>
-        <ListItemText
-          primary="@Shamalsunder"
+        <ListItemText 
+          primary=  {name?.username}
           secondary={
             <React.Fragment>
               <Typography
@@ -35,21 +48,16 @@ function Widgets() {
                 variant="body2"
                 color="text.primary"
               >
-                Shamal Sunder
+              {name?.name}
               </Typography>
-
-               
-               
-
-
-
 
               <button className='followbutton'> Follow </button>
             </React.Fragment>
           }
         />
       </ListItem>
-      <Divider variant="inset" component="li" />
+))}
+      {/* <Divider variant="inset" component="li" />
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
@@ -69,7 +77,9 @@ function Widgets() {
               <button className='followbutton'> Follow </button>
             </React.Fragment>
           }
+          
         />
+        
       </ListItem>
       <Divider variant="inset" component="li" />
       <ListItem alignItems="flex-start">
@@ -90,16 +100,20 @@ function Widgets() {
               </Typography>
              <button className='followbutton'> Follow </button>
             </React.Fragment>
-          }
-        />
-      </ListItem>
+          } 
+        />      
+       
+      </ListItem> */}
+      
     </List>
- 
-
-
+    
+   
+  
 
     </div>
-  )
+  
+    
+  ) 
 }
 
 export default Widgets

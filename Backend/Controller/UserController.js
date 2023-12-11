@@ -259,6 +259,15 @@ module.exports = {
   },
    
 
+  // Getallusers in follow section [GET api/user/allusers]
+
+  Getallusers: async (req,res) => {
+      const allusers = await UserSchemaa.find();
+      
+      res.json(allusers)
+      
+
+  }
 
 
 

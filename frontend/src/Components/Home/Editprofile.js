@@ -14,7 +14,7 @@ import { uploadAvatar } from "../CloudinaryAvatar";
 function Editprofile({ open, onClose }) {
   
   const [avatar, setAvatar] = useState();
-  const [cookie, setcookie, removecookie] = useCookies(["cookies"]);
+  const [cookie, setCookie, removecookie] = useCookies(["cookies"]);
   const [state, setState] = useState("");
 
   
@@ -97,4 +97,4 @@ function Editprofile({ open, onClose }) {
 
 export default Editprofile;
 
-//this is from gpt
+

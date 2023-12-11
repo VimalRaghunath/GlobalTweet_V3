@@ -7,6 +7,7 @@ import { AxiosInstance } from "../AxiosInstance";
 import "./Profile.css";
 import { useNavigate } from "react-router-dom";
 import Editprofile from "./Editprofile";
+import Editcoverphoto from "./Editcoverphoto";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -28,6 +29,7 @@ function Profile() {
   const [mypost, setMypost] = useState([]);
   const navigate = useNavigate();
   const [editProfileOpen, setEditProfileOpen] = useState(false);
+  const [coverphotoOpen,setCoverphotoOpen] = useState(false);
 
 
   // console.log(mypost);
@@ -63,6 +65,17 @@ function Profile() {
   const handleCloseEditProfile = () => {
     setEditProfileOpen(false);
   };
+
+  
+
+
+  const EditCoverphotoClick = () => {
+    setCoverphotoOpen(true);
+  };
+
+  const CloseCoverphotoClick = () => {
+    setCoverphotoOpen(false);
+  }
 
   // useEffect( () => {
   //   async function postcookie(){
@@ -120,7 +133,7 @@ function Profile() {
         </div> */}
 
   <div> 
-    <u><h2 style={{textAlign:"center"}}>All Posts</h2></u>
+    <u><h2 style={{textAlign:"center"}}>My Posts</h2></u>
 <Card sx={{ maxWidth: 545 }}>
   {mypost?.data?.map((post) => (
     <div key={post._id}>
@@ -163,11 +176,13 @@ function Profile() {
           <Widgets/>
           <div>
        <Button onClick={handleEditProfileClick}> Edit Profile </Button>
+       <Button onClick={EditCoverphotoClick}>Edit Cover Photo</Button>
      </div>
           <Button className='Logout' onClick={()=>navigate('/')} > Logout </Button>
         </div>
 
         <Editprofile open={editProfileOpen} onClose={handleCloseEditProfile}/>
+        <Editcoverphoto open={coverphotoOpen} onClose={CloseCoverphotoClick}/>
       </div>
       
       </>

@@ -264,10 +264,27 @@ module.exports = {
   Getallusers: async (req,res) => {
       const allusers = await UserSchemaa.find();
       
-      res.json(allusers)
-      
+      res.json(allusers)   
+  },
 
-  }
+
+  // Editcoverphoto in profile section [PUT api/user/editcoverphoto]
+
+  Editcoverphoto: async (req,res) => {
+    const { coverpic ,id } = req.body;
+    const Editcover = UserSchemaa.findOne({_id: id})
+    if(Editcover){
+      await UserSchemaa.findByIdAndUpdate(id, {
+        $set:{
+          CoverPic:coverpic
+        }
+    })
+    res.status(200).json("CoverPhoto Succesful")
+  } else {
+     res.status(404).json("error")
+
+   }
+ },
 
 
 

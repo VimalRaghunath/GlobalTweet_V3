@@ -16,6 +16,7 @@ UserRouter.get('/explore',(UserController.Explore))
 UserRouter.put('/editprofile',(UserController.Editprofile))
 UserRouter.put('/editavatar',(UserController.EditAvatar))
 UserRouter.get('/allusers',(UserController.Getallusers))
+UserRouter.put('/editcoverphoto',(UserController.Editcoverphoto))
 
 
 

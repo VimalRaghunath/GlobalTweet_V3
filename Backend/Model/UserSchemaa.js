@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const userSchema = mongoose.Schema({
     name: { type: String, required: true},
     Avatar: String,
+    coverphoto: String,
     email: { type: String, required: true},
     mobile: { type: Number, required: true},
     username: { type: String, required: true},
@@ -12,6 +13,7 @@ const userSchema = mongoose.Schema({
     following: Array,
     followers: Array,
     isBlocked: { type: Boolean , default:false},
+
 })
 
 module.exports = mongoose.model("User",userSchema)

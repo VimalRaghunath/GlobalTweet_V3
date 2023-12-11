@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Widgets.css"
 import List from "@mui/material/List"
 import ListItem from '@mui/material/ListItem';
@@ -9,13 +9,18 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 function Widgets() {
+ 
+ const [state,setState] = useState("")
+ const [peoples,setPeoples] = useState()
+
 
   return (
     <div className='Widgets'>
-       Who to follow
+       <b>Who to follow</b>
          
 
        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
@@ -32,6 +37,13 @@ function Widgets() {
               >
                 Shamal Sunder
               </Typography>
+
+               
+               
+
+
+
+
               <button className='followbutton'> Follow </button>
             </React.Fragment>
           }

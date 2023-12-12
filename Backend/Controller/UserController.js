@@ -267,6 +267,24 @@ module.exports = {
       res.json(allusers)   
   },
 
+  // get user by Id  [GET api/user/getuserbyid]
+
+getUserById: async(req,res)=>{
+  const userId=req.params.id;
+
+  const userById= await UserSchemaa.findById(userId);
+  if(!userById){
+    return res.status(400).json({
+      status:"error",
+      message:"cant find user"
+    })
+
+  }
+  else{
+    return res.status(200).json(userById)
+  }
+  
+} ,
 
   // Editcoverphoto in profile section [PUT api/user/editcoverphoto]
 

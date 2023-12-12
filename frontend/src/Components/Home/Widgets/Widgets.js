@@ -8,23 +8,31 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { AxiosInstance } from '../../AxiosInstance';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Widgets() {
  
 //  const [state,setState] = useState("")
  const [peoples,setPeoples] = useState([])
-console.log(peoples);
+ const navigate = useNavigate()
+ const { id } = useParams()
+console.log( "peoples",peoples);
 
 
  useEffect(() => {
   async function getall() {
-    const profiles = await AxiosInstance.get("/api/user/allusers");
+    const profiles = await AxiosInstance.get("/api/user/allusers",{ id });
     // console.log(post);
     setPeoples(profiles.data);
     // console.log("profiles",profiles.data);
   }
   getall();
 }, []);
+
+
+  // const handleUsersdetails = () => {
+  //   navigate(`/api/User/allusers/${peoples._id}`)
+  // }
 
 
   return (
@@ -38,7 +46,7 @@ console.log(peoples);
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src={name?.Avatar} />
         </ListItemAvatar>
-        <ListItemText 
+        <ListItemText onClick={()=>navigate(`/userbyid/${name?._id}`)}
           primary=  {name?.username}
           secondary={
             <React.Fragment>

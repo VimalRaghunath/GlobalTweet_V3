@@ -10,6 +10,7 @@ import Messages from "./Components/Home/Messages"
 import Explore from "./Components/Home/Explore"
 import Notifications from "./Components/Home/Notifications"
 import Post from "./Components/Home/Feed/Post"
+import UserbyId from "./Components/Home/UserbyId"
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/explore" element={<Explore/>} />
           <Route path="/notifications" element={<Notifications/>} />
           <Route path="/post" element={<Post/>} />
+          <Route path="/userbyid/:userId" element={<UserbyId/>}/>
           
           
         </Routes>

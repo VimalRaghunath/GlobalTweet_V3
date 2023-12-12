@@ -11,6 +11,8 @@ import Editcoverphoto from "./Editcoverphoto";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
+import RepeatRoundedIcon from '@mui/icons-material/RepeatRounded';
 import {
   Card,
   CardActions,
@@ -158,10 +160,16 @@ function Profile() {
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites" >
           <FavoriteBorderRoundedIcon />
-        </IconButton>
+        </IconButton>&nbsp;
+        <IconButton aria-label="comment">
+        <ChatBubbleOutlineRoundedIcon />
+        </IconButton>&nbsp;
+        <IconButton aria-label="retweet">
+        <RepeatRoundedIcon />
+        </IconButton>&nbsp;
         <IconButton aria-label="share">
           <ShareRoundedIcon />
-        </IconButton>
+        </IconButton>&nbsp;
       </CardActions>
     </div>
   ))}

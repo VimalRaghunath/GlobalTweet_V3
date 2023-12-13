@@ -111,7 +111,7 @@ function Profile() {
      
         <div className="Profilecontent">
           <div className="Profileheader">
-              <Avatar
+              <Avatar style={{ width: '100px', height: '100px' }}
                 src={state?.userpro?.Avatar} 
                 alt={state?.userpro?.username}
                 className="Profileavatar"

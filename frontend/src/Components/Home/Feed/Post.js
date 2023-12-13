@@ -17,6 +17,9 @@ import { ExpandMore } from "@mui/icons-material";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
+import RepeatRoundedIcon from '@mui/icons-material/RepeatRounded';
+
 function Post() {
   const [post, setPosts] = useState([]);
 
@@ -70,9 +73,15 @@ function Post() {
           {postItem?.description}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions disableSpacing >
         <IconButton aria-label="add to favorites">
           <FavoriteBorderRoundedIcon />
+        </IconButton>
+        <IconButton aria-label="comment">
+          <ChatBubbleOutlineRoundedIcon />
+        </IconButton>
+        <IconButton aria-label="retweet">
+          <RepeatRoundedIcon />
         </IconButton>
         <IconButton aria-label="share">
           <ShareRoundedIcon />

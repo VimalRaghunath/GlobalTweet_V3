@@ -44,7 +44,7 @@ console.log( "peoples",peoples);
       {peoples?.map((name)=>(
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src={name?.Avatar} />
+          <Avatar style={{ width: '50px', height: '50px' }} alt="Remy Sharp" src={name?.Avatar} />
         </ListItemAvatar>
         <ListItemText onClick={()=>navigate(`/userbyid/${name?._id}`)}
           primary=  {name?.username}

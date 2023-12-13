@@ -267,6 +267,7 @@ module.exports = {
       res.json(allusers)   
   },
 
+
   // get user by Id  [GET api/user/getuserbyid]
 
   getUserById: async(req,res)=>{
@@ -307,9 +308,24 @@ module.exports = {
  },
 
 
- 
+ // showing posts of other users in their profile [GET api/user/allpostsbyid]
 
+  AllpostsById: async (req,res) => {
+    userIdd=req.params.id;
 
+    const post= await PostSchema.find({userIdd:userId})
+
+    if(!post){
+      return res.status(404).json({
+        status:"error",
+        message:"user not found"
+      })
+    }
+    else{
+      return res.status(200).json(post)
+    }
+
+  },
 
 
 

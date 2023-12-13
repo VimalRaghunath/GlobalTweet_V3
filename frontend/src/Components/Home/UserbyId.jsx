@@ -54,72 +54,22 @@ const UserbyId = () => {
         <div className="Profilecontent">
           <div className="Profileheader">
             <Avatar
-              src={state?.userpro?.Avatar}
-              alt={state?.userpro?.username}
+              src={userById.Avatar}
+              alt="avtar"
               className="Profileavatar"
             />
             <div className="Profiletitles">
-              <h3>{state?.userpro?.name}</h3>
-              <h4>{state?.userpro?.username}</h4>
-              <p>{state?.userpro?.bio}</p>
+              <h3>{userById.name}</h3>
+              <h4>{userById.username}</h4>
+              <p>{userById.bio}</p>
             </div>
           </div>
-
-          {/* <div className="ProfilePosts">
-            <h2>User Posts</h2>
-            {mypost?.data?.map((post) => (
-              <div key={post._id}>
-                <p>{post.description}</p>
-                <img src={post.image} width={500} />
-              </div>
-            ))}
-          </div>
-        </div> */}
 
           <div>
             <u>
               <h2 style={{ textAlign: "center" }}>All Posts</h2>
             </u>
-            <Card sx={{ maxWidth: 545 }}>
-              {userById?.data?.map((post) => (
-                <div key={post._id}>
-                  <CardHeader
-                    avatar={
-                      <Avatar aria-label="recipe" src={post?.userId?.Avatar} />
-                    }
-                    action={
-                      <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                      </IconButton>
-                    }
-                    title={post?.userId?.username}
-                    subheader="September 14, 2016"
-                  />
-                  {post?.image ? (
-                    <CardMedia
-                      component="img"
-                      image={post?.image}
-                      alt="Paella dish"
-                    />
-                  ) : null}
-
-                  {/* <CardMedia component="img" image={post.image} alt="Paella dish" /> */}
-                  <CardContent>
-                    <Typography variant="body2" color="text.secondary">
-                      {post.description}
-                    </Typography>
-                  </CardContent>
-                  <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                      <FavoriteBorderRoundedIcon />
-                    </IconButton>
-                    <IconButton aria-label="share">
-                      <ShareRoundedIcon />
-                    </IconButton>
-                  </CardActions>
-                </div>
-              ))}
-            </Card>
+          
           </div>
         </div>
 

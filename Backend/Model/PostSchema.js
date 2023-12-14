@@ -6,8 +6,10 @@ const PostSchema = new mongoose.Schema({
     description: { type: String},
     image: { type: String},
     category: { type: String },
-    likes: { type: String}, //like details about users,count
+    likes: { type: Number, default: 0},
+    comment: { type: String}, //like details about users,count
     tweet: { type: String },
+
     // Date:{type:Date,default:Date.now}
    
 })

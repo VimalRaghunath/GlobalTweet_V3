@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Editprofile from "./Editprofile";
 import Editcoverphoto from "./Editcoverphoto";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
-import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import { FavoriteBorderRounded, FavoriteRounded } from "@mui/icons-material/FavoriteBorderRounded";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
 import RepeatRoundedIcon from '@mui/icons-material/RepeatRounded';
@@ -29,6 +29,7 @@ function Profile() {
   const [state, setState] = useState("");
   const [cookie, setcookie, removecookie] = useCookies(["cookies"]);
   const [mypost, setMypost] = useState([]);
+  const [posts,setPosts] = useState([])
   const navigate = useNavigate();
   const [editProfileOpen, setEditProfileOpen] = useState(false);
   const [coverphotoOpen,setCoverphotoOpen] = useState(false);
@@ -77,6 +78,17 @@ function Profile() {
 
   const CloseCoverphotoClick = () => {
     setCoverphotoOpen(false);
+  }
+
+
+  const handleLike = (postId) => {
+    setPosts((prevPosts) => 
+      prevPosts.map((post) => 
+        post._id === postId
+         ? { ...post, isLiked: !post.isLiked, likes: post.isLiked ? post.likes - 1 : post.likes + 1 }
+         : post
+       )
+    )
   }
 
   // useEffect( () => {
@@ -154,15 +166,18 @@ function Profile() {
       {/* <CardMedia component="img" image={post.image} alt="Paella dish" /> */}
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {post.description}
+          {post?.description}
         </Typography>
-      </CardContent>
+        </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" >
-          <FavoriteBorderRoundedIcon />
-        </IconButton>&nbsp;
+      <IconButton aria-label="add to favorites" onClick={() => handleLike(post._id)}>
+              {post?.isLiked ? <FavoriteRounded /> : <FavoriteBorderRounded />}
+            </IconButton>
+            <Typography variant="body2" color="text.secondary">
+              {post?.likes}
+            </Typography>
         <IconButton aria-label="comment">
-        <ChatBubbleOutlineRoundedIcon />
+         <ChatBubbleOutlineRoundedIcon />
         </IconButton>&nbsp;
         <IconButton aria-label="retweet">
         <RepeatRoundedIcon />

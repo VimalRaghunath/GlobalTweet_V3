@@ -20,6 +20,15 @@ module.exports = {
 
     const { name, email, mobile, username, password  } = value;
 
+    const existingUser = await UserSchemaa.findOne({ username });
+
+    if(existingUser){
+      return res.status(400).json({
+        status: "error",
+        message:"This Username is already Exists. Please choose a different one.",
+      })
+    }
+
     await UserSchemaa.create({
       name,
       email,
@@ -69,9 +78,6 @@ module.exports = {
   },
 
 
-  // create Post/feed of users [POST api/user/newpost]--------------------
-
-
   // post: async (req, res) => {
   //   const { title, description, image, category,likes} = req.body;
   //   console.log(image);
@@ -92,13 +98,13 @@ module.exports = {
   //   });
   // },
 
+
+  // create Post/feed of users [POST api/user/newpost]--------------------
+
   post: async (req, res) => {
     try {
-      const { title, description, image, category, likes, } = req.body;
+      const { title, description, image, category, likes, comment } = req.body;
       console.log(req.body);
-      // console.log(res.token);
-  
-    //  console.log(description);
 
       const userPost = await PostSchema.create({
         
@@ -108,7 +114,7 @@ module.exports = {
         image: image,
         category: category,
         likes: likes,
-
+        comment: comment
       });
   
       res.status(201).json({

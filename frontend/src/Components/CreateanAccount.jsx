@@ -4,6 +4,8 @@ import Logo from "./Assets/GlobalTweet.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AxiosInstance } from "./AxiosInstance";
+// import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -30,11 +32,12 @@ function CreateanAccount() {
       );
 
       if (response.data.status == "success") {
-        alert("Account Created Successfully");
         navigate("/");
+        // toast.success('Account created Successfully', { position: toast.POSITION.TOP_CENTER });
       }
     } catch (error) {
-      throw new Error(error);
+      // toast.error('Error', { position: toast.POSITION.TOP_CENTER });
+      console.error(error);
     }
   };
 

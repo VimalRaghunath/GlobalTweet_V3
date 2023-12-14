@@ -11,10 +11,13 @@ import Explore from "./Components/Home/Explore"
 import Notifications from "./Components/Home/Notifications"
 import Post from "./Components/Home/Feed/Post"
 import UserbyId from "./Components/Home/UserbyId"
+// import { ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <div className="App">
+       {/* <ToastContainer /> */}
       <div>
         <Routes>
           <Route path="/" element={<Signin />} />
@@ -27,7 +30,6 @@ function App() {
           <Route path="/notifications" element={<Notifications/>} />
           <Route path="/post" element={<Post/>} />
           <Route path="/userbyid/:userId" element={<UserbyId/>}/>
-          
           
         </Routes>
       </div>

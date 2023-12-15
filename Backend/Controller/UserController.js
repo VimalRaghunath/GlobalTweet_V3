@@ -334,6 +334,22 @@ module.exports = {
   },
 
 
+  // like section [POST api/user/like]------------------------
+
+
+  setLike: async (req,res) => {
+    
+    const { id, username } = req.body;
+    console.log(id,username)
+    const likeUser = await contentSchema.findOne({_id: id})
+    if(!likeUser.likes.includes(username)){
+      const setLike= await contentschema.updateOne(
+        {_id: id},
+        {$push:{likes: username}}
+      )
+      res.json(dislike)
+    }
+  },
 
  
  // messsages showing in profile [GET api/user/messages]---------------

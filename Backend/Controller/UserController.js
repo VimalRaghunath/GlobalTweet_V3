@@ -334,7 +334,7 @@ module.exports = {
   },
 
 
-  // like section [POST api/user/like]------------------------
+  // like section [POST api/user/like/:id]------------------------
 
 
   setLike: async (req,res) => {
@@ -352,6 +352,112 @@ module.exports = {
   },
 
  
+
+  // follow the user [POST api/user/follow/:id]--------------------
+
+  followUser: async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const loggedInUserId = res.token;
+
+      if (userId === loggedInUserId) {
+        return res.status(400).json({ error: 'Cannot follow yourself' });
+      }
+
+        const userToFollow = await UserSchemaa.findById(userId);
+        const loggedInUser = await UserSchemaa.findById(loggedInUserId);
+
+       if (!userToFollow || !loggedInUser) {
+          return res.status(404).json({ error: 'User not found' });
+      }
+
+
+      // Check if already following-----------------
+
+       if (loggedInUser.following.includes(userId)) {
+          return res.status(400).json({ error: 'Already following this user' });
+      }
+
+
+      // Update following array for logged-in user------------
+
+      loggedInUser.following.push(userId);
+      await loggedInUser.save();
+
+
+      // Update followers array for the user to follow---------
+
+      userToFollow.followers.push(loggedInUserId);
+      await userToFollow.save();
+
+       res.status(200).json({ status: 'success', message: 'User followed successfully' });
+     } catch (error) {
+       console.error(error);
+       res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
+
+
+//unfollow the user [POST api/user/unfollow/:id]--------------------
+
+
+  unfollowUser: async (req, res) => {
+
+    try {
+      const { userId } = req.params;
+      const loggedInUserId = res.token;
+
+      if (userId === loggedInUserId) {
+
+        return res.status(400).json({ error: 'Cannot unfollow yourself' });
+      }
+
+      const userToUnfollow = await UserSchemaa.findById(userId);
+
+      const loggedInUser = await UserSchemaa.findById(loggedInUserId);
+
+      if (!userToUnfollow || !loggedInUser) {
+
+        return res.status(404).json({ error: 'User not found' });
+      }
+
+
+         // Check if already unfollowed
+
+      if (!loggedInUser.following.includes(userId)) {
+
+        return res.status(400).json({ error: 'Not following this user' });
+      }
+
+
+
+      // Update following array for logged-in user
+
+      loggedInUser.following = loggedInUser.following.filter(id => id !== userId);
+      await loggedInUser.save();
+
+
+
+      // Update followers array for the user to unfollow
+
+      userToUnfollow.followers = userToUnfollow.followers.filter(id => id !== loggedInUserId);
+        await userToUnfollow.save();
+
+        res.status(200).json({ status: 'success', message: 'User unfollowed successfully' });
+      } catch (error) {
+          console.error(error);
+          res.status(500).json({ error: 'Internal Server Error' });
+      }
+
+  },
+
+
+
+
+
+
+
+
  // messsages showing in profile [GET api/user/messages]---------------
 
 

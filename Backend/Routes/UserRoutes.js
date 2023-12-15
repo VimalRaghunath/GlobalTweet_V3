@@ -19,6 +19,9 @@ UserRouter.get('/allusers',Trycatch(UserController.Getallusers))
 UserRouter.put('/editcoverphoto',Trycatch(UserController.Editcoverphoto))
 UserRouter.get('/getuserbyid/:id',Auth,(UserController.getUserById))
 UserRouter.get('/allpostsbyid/:id',Trycatch(UserController.AllpostsById))
+UserRouter.post('/like/:id',Trycatch(UserController.setLike))
+UserRouter.post('/follow/:id',Auth,Trycatch(UserController.followUser))
+UserRouter.post('/unfollow/:id',Auth,Trycatch(UserController.unfollowUser))
 
 
 

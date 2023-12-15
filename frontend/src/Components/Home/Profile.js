@@ -45,21 +45,30 @@ function Profile() {
         },
       });
 
-      const userposts = await AxiosInstance.get("/api/user/profileposts", {
-        headers: {
-          Authorization: `bearer ${cookie.cookies}`,
-        },
-      });
-      setMypost(userposts.data);
-      console.log(posts.data);
+      // const userposts = await AxiosInstance.get("/api/user/profileposts", {
+      //   headers: {
+      //     Authorization: `bearer ${cookie.cookies}`,
+      //   },
+      // });
+      // setMypost(userposts.data);
       setState(posts.data);
     
     }
 
     newcookie();
+    async function newcookiess() {
+      const userposts = await AxiosInstance.get("/api/user/profileposts", {
+        headers: {
+          Authorization: `bearer ${cookie.cookies}`,
+        },
+      });
+      setMypost(userposts.data.data);
+    }
+    newcookiess()
   }, []);
 
-  // console.log(state);
+
+  console.log(mypost, "mypost");
 
   const handleEditProfileClick = () => {
     setEditProfileOpen(true);
@@ -78,6 +87,11 @@ function Profile() {
 
   const CloseCoverphotoClick = () => {
     setCoverphotoOpen(false);
+  }
+
+  const handleLogout = () => {
+    removecookie("cookies");
+    navigate('/')
   }
 
 
@@ -150,7 +164,7 @@ function Profile() {
     <u><h2 style={{textAlign:"center"}}>My Posts</h2></u>
 <Card sx={{ maxWidth: 545 }}>
   {mypost?.data?.map((post) => (
-    <div key={post._id}>
+    <div key={post?._id}>
       <CardHeader
         avatar={<Avatar aria-label="recipe" src={post?.userId?.Avatar} />}
         action={
@@ -198,10 +212,10 @@ function Profile() {
         <div className="Widgets" >
           <Widgets/>
           <div>
-       <Button onClick={handleEditProfileClick}> Edit Profile </Button>
-       <Button onClick={EditCoverphotoClick}>Edit Cover Photo</Button>
+       <Button onClick={()=>handleEditProfileClick()}> Edit Profile </Button>
+       <Button onClick={()=>EditCoverphotoClick()}>Edit Cover Photo</Button>
      </div>
-          <Button className='Logout' onClick={()=>navigate('/')} > Logout </Button>
+          <Button className='Logout' onClick={()=>handleLogout()} > Logout </Button>
         </div>
 
         <Editprofile open={editProfileOpen} onClose={handleCloseEditProfile}/>

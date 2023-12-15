@@ -73,7 +73,7 @@ function Editprofile({ open, onClose }) {
         
         <DialogContent component="form" onSubmit={handleSubmit}>
           <TextField type="file" onChange={(e) => UploadAvatar(e)} fullWidth />
-          <Button onClick={handleupload}>upload</Button>
+          <Button onClick={()=>handleupload()}>upload</Button>
         </DialogContent>
         <DialogContent>
           <TextField label="Name" fullWidth defaultValue={""} />
@@ -87,8 +87,8 @@ function Editprofile({ open, onClose }) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose}>Cancel</Button>
-          <Button onClick={handleSave}>Save</Button>
+          <Button onClick={()=>onClose()}>Cancel</Button>
+          <Button onClick={()=>handleSave()}>Save</Button>
         </DialogActions>
       </Dialog>
     </div>

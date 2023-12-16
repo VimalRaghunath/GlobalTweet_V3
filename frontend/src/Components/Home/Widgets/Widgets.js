@@ -34,6 +34,23 @@ console.log( "peoples",peoples);
   //   navigate(`/api/User/allusers/${peoples._id}`)
   // }
 
+  const handleFollow = async (userId) => {
+    try {
+      await AxiosInstance.post(`/api/user/follow/${userId}`);
+    } catch (error) {
+      console.error("Error following user:", error);
+    }
+  };
+
+  const handleUnfollow = async (userId) => {
+
+    try {
+      await AxiosInstance.post(`/api/user/unfollow/${userId}`);
+    } catch (error) {
+      console.error("Error unfollowing user:", error);
+    }
+  };
+
 
   return (
     <div className='Widgets'>
@@ -59,8 +76,8 @@ console.log( "peoples",peoples);
               {name?.name}
               </Typography>
 
-              <button className='followbutton'> Follow </button>
-            </React.Fragment>
+              <button className='followbutton' onClick={() => handleFollow(name._id)}> Follow </button>
+              <button className='followbutton' onClick={() => handleUnfollow(name._id)}> Unfollow </button>            </React.Fragment>
           }
         />
       </ListItem>

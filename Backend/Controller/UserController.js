@@ -337,17 +337,25 @@ module.exports = {
   // like section [POST api/user/like/:id]------------------------
 
 
-  setLike: async (req,res) => {
-    
-    const { id, username } = req.body;
-    console.log(id,username)
-    const likeUser = await contentSchema.findOne({_id: id})
-    if(!likeUser.likes.includes(username)){
-      const setLike= await contentschema.updateOne(
-        {_id: id},
-        {$push:{likes: username}}
-      )
-      res.json(dislike)
+  setLike: async (req, res) => {
+    try {
+      const { id, username } = req.body;
+      const post = await PostSchema.findById(id);
+  
+      if (!post) {
+        return res.status(404).json({ status: "error", message: "Post not found" });
+      }
+  
+      if (!post.likes.includes(username)) {
+        post.likes.push(username);
+        await post.save();
+        res.json({ status: "success", message: "Post liked successfully" });
+      } else {
+        res.status(400).json({ status: "error", message: "Post already liked" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ status: "error", message: "Internal server error" });
     }
   },
 

@@ -95,6 +95,25 @@ function Profile() {
   }
 
 
+  const handleFollow = async (userId) => {
+    try {
+      const response = await AxiosInstance.post(`/api/user/follow/${userId}`);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  const handleUnfollow = async (userId) => {
+    try {
+      const response = await AxiosInstance.post(`/api/user/unfollow/${userId}`);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
   const handleLike = (postId) => {
     setPosts((prevPosts) => 
       prevPosts.map((post) => 
@@ -175,6 +194,10 @@ function Profile() {
         title={post?.userId?.username}
         subheader="September 14, 2016"
       />
+
+      <Button onClick={() => handleFollow(post.userId)}>Follow</Button>
+      <Button onClick={() => handleUnfollow(post.userId)}>Unfollow</Button>
+
       {post?.image  ? <CardMedia component="img" image={post?.image} alt="Paella dish" />:null}
 
       {/* <CardMedia component="img" image={post.image} alt="Paella dish" /> */}

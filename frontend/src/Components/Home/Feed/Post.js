@@ -13,7 +13,7 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import { ExpandMore } from "@mui/icons-material";
+import { ExpandMore, FavoriteBorderRounded, FavoriteRounded } from "@mui/icons-material";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -32,6 +32,17 @@ function Post() {
     }
     getall();
   }, []);
+
+
+  const handleLike = async (postId) => {
+    try {
+      const response = await AxiosInstance.post(`/api/user/like/${postId}`, { id: postId, username: 'currentUsername' });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
 
   // useEffect(() => {
   //   async function getall() {
@@ -74,9 +85,12 @@ function Post() {
         </Typography>
       </CardContent>
       <CardActions disableSpacing >
-        <IconButton aria-label="add to favorites">
-          <FavoriteBorderRoundedIcon />
-        </IconButton>
+      <IconButton aria-label="add to favorites" onClick={() => handleLike(post._id)}>
+           {post?.isLiked ? <FavoriteRounded/> : <FavoriteBorderRounded />}
+       </IconButton>
+         <Typography variant="body2" color="text.secondary">
+            {post?.likes}
+         </Typography>
         <IconButton aria-label="comment">
           <ChatBubbleOutlineRoundedIcon />
         </IconButton>

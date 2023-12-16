@@ -166,6 +166,14 @@ function Profile() {
               <h4>{state?.userpro?.username}</h4>
               <p>{state?.userpro?.bio}</p>
             </div>
+            <div style={{display:"flex",flexDirection:"column",marginLeft:"20rem"}}>
+               <div>
+                 <Button onClick={() => handleFollow(state?.userId)}>Followers</Button>
+              </div>
+              <div>
+                  <Button onClick={() => handleUnfollow(state?.userId)}>Following</Button>
+              </div>
+            </div>
           </div>
 
           {/* <div className="ProfilePosts">
@@ -195,8 +203,7 @@ function Profile() {
         subheader="September 14, 2016"
       />
 
-      <Button onClick={() => handleFollow(post.userId)}>Follow</Button>
-      <Button onClick={() => handleUnfollow(post.userId)}>Unfollow</Button>
+
 
       {post?.image  ? <CardMedia component="img" image={post?.image} alt="Paella dish" />:null}
 

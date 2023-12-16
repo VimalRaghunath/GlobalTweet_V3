@@ -365,7 +365,7 @@ module.exports = {
 
   followUser: async (req, res) => {
     try {
-      const { userId } = req.params;
+      const  userId  = req.params.id;
       const loggedInUserId = res.token;
 
       if (userId === loggedInUserId) {
@@ -375,9 +375,15 @@ module.exports = {
         const userToFollow = await UserSchemaa.findById(userId);
         const loggedInUser = await UserSchemaa.findById(loggedInUserId);
 
-       if (!userToFollow || !loggedInUser) {
-          return res.status(404).json({ error: 'User not found' });
+       if (!userToFollow ) {
+          return res.status(404).json({ error: 'No such users' });
       }
+
+       if (!loggedInUser) {
+        return res.status(404).json({error:"user not found"})
+       }
+
+
 
 
       // Check if already following-----------------
@@ -390,18 +396,18 @@ module.exports = {
       // Update following array for logged-in user------------
 
       loggedInUser.following.push(userId);
-      await loggedInUser.save();
+        await loggedInUser.save();
 
 
       // Update followers array for the user to follow---------
 
       userToFollow.followers.push(loggedInUserId);
-      await userToFollow.save();
+        await userToFollow.save();
 
        res.status(200).json({ status: 'success', message: 'User followed successfully' });
-     } catch (error) {
-       console.error(error);
-       res.status(500).json({ error: 'Internal Server Error' });
+      }  catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
   },
 

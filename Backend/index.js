@@ -28,6 +28,8 @@ App.use(express.json())
 App.use("/api/user",UserRouter)
 // App.use("/api/admin",AdminRouter)
 
+
+
 io.on("connection",(socket) => {
   console.log("A user connected");
 
@@ -43,6 +45,7 @@ io.on("connection",(socket) => {
     console.log("user disconnected");
   })
 })
+
 
 
 App.listen(Port,()=>{

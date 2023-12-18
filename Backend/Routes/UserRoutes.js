@@ -8,6 +8,7 @@ const Auth = require("../Middleware/userAuthentication");
 
 UserRouter.post('/createanaccount',Trycatch(UserController.createuser))
 UserRouter.post('/',Trycatch(UserController.signin))
+UserRouter.post('/googlelogin',UserController.googlesignin)
 UserRouter.get('/profile',Auth,UserController.profile)
 UserRouter.post('/newpost',Auth,UserController.post)
 UserRouter.get('/post',Trycatch(UserController.getAllPost))
@@ -22,6 +23,7 @@ UserRouter.get('/allpostsbyid/:id',Trycatch(UserController.AllpostsById))
 UserRouter.post('/like/:id',Trycatch(UserController.setLike))
 UserRouter.post('/follow/:id',Auth,Trycatch(UserController.followUser))
 UserRouter.post('/unfollow/:id',Auth,Trycatch(UserController.unfollowUser))
+
 
 
 

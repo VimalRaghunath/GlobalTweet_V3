@@ -16,7 +16,7 @@ function Signin() {
   const Signin = async (e) => {
     e.preventDefault();
 
-    const username = e.target.username.value;
+    const email = e.target.username.value;
     const password = e.target.password.value;
 
     try {
@@ -25,7 +25,7 @@ function Signin() {
         
         {
           
-          username : username,
+          email : email,
           password: password,
         }
       );

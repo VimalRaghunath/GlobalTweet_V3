@@ -13,8 +13,4 @@ const Auth = (req,res,next) => {
        }
 }
 
-const googlesignin = async (req,res) => {
-  
-}
-
  module.exports = Auth

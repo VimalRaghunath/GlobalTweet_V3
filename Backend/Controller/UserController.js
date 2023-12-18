@@ -54,10 +54,10 @@ module.exports = {
       return res.json(error.message);
     }
 
-    const { username, password } = value;
+    const { email, password } = value;
 
     const User = await UserSchemaa.findOne({
-      username: username,
+      email: email,
       password: password,
     });
 
@@ -76,6 +76,59 @@ module.exports = {
         .json({ status: "success", message: "Signin successful", data: token });
     }
   },
+
+
+  // Signin using email [POST api/user/googlesignin]
+
+
+   googlesignin : async (req,res) => {
+    try{
+     const email = req.body.email;
+     const name = req.body.name;
+     const userExist = await UserSchemaa.find({ email: req.body.email });
+     if(userExist){
+      return res.status(200).send({ message: "Given Email is already a user", success: false })
+     }
+
+     const user = await UserSchemaa.findOne({ email: req.body.email });
+      if (user) {
+        const token = jwt.sign(
+          {
+            id : user._id,
+          },
+            process.env.USER_ACCESS_TOKEN_SECRET,
+          {
+            expiresIn: "1d",
+          }
+        )
+         res.status(200).send({ message: "Signin successful", success: true, data: token })
+      } else {
+        const user = new user({
+          name : name,
+          email: email,
+          passsword: 1234,
+        })
+
+        const userData = await user.save();
+        if(userData) {
+          const token = jwt.sign(
+            {
+              id : user._id,
+            },
+               process.env.USER_ACCESS_TOKEN_SECRET,
+            {
+              expiresIn: "1d",
+            }
+          );
+          res.status(200).send({ message: "Signin Successful", success: true, data: token });
+        } else {
+          res.status(200).send({ message: "Signin failed", success: false })
+        }
+      }
+    } catch (error) {
+      console.log(error)
+   }
+ },
 
 
   // post: async (req, res) => {

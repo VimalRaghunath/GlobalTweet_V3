@@ -42,13 +42,36 @@ function Signin() {
       alert(error);
     }
   };
+
+  const googleSignin = async (name,email) => {
+     try {
+      const formData = {
+        name,email 
+      }
+       if(formData){
+        const response = await AxiosInstance.post("/api/user/googlesignin", formData)
+         
+        if (response.data.status == "success") {
+          setcookie("cookies",response.data.data)
+          alert("Redirected to home page")
+          navigate("/")
+        } else {
+          alert("failed")
+        }
+       } else {
+        console.log("Something went wrong")
+       }
+     } catch (error) {
+       alert(error)
+     }
+  }
    
 
   return (
     <div className="container">
       <div className="Signin">
-        <h1 className="SignintoGlobalTweet">Sign in to GlobalTweet</h1>
-        <button className="SigninwithGoogle">Sign in with Google</button>
+        <h1 className="SignintoGlobalTweet" >Sign in to GlobalTweet</h1>
+        <button className="SigninwithGoogle" action="" onSubmit={googleSignin} >Sign in with Google</button>
         <button className="SigninwithApple">Sign in with Apple</button>
 
         

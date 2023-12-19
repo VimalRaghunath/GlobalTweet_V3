@@ -391,25 +391,23 @@ module.exports = {
 
 
   setLike: async (req, res) => {
-    try {
-      const { id, username } = req.body;
-      const post = await PostSchema.findById(id);
+      const { userId,postId } = req.body;
+      const post = await PostSchema.findOne({_id: postId});
   
-      if (!post) {
-        return res.status(404).json({ status: "error", message: "Post not found" });
-      }
-  
-      if (!post.likes.includes(username)) {
-        post.likes.push(username);
-        await post.save();
-        res.json({ status: "success", message: "Post liked successfully" });
+      if (!post.likes.includes(userId)) {
+         const setLike = await PostSchema.updateOne(
+          {_id: postId },
+          { $push: { likes: userId } }
+         )
+         res.json(setLike)
       } else {
-        res.status(400).json({ status: "error", message: "Post already liked" });
+        const dislike = await PostSchema.updateOne(
+          {_id: postId },
+          { $pull: { likes: userId } }
+        )
+        res.json(dislike)
       }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ status: "error", message: "Internal server error" });
-    }
+  
   },
 
  

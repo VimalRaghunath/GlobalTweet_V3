@@ -29,6 +29,7 @@ function Profile() {
   const [state, setState] = useState("");
   const [cookie, setcookie, removecookie] = useCookies(["cookies"]);
   const [mypost, setMypost] = useState([]);
+  console.log(mypost);
   const [posts,setPosts] = useState([])
   const navigate = useNavigate();
   const [editProfileOpen, setEditProfileOpen] = useState(false);
@@ -66,6 +67,7 @@ function Profile() {
     }
     newcookiess()
   }, []);
+
 
 
   console.log(mypost, "mypost");
@@ -114,14 +116,15 @@ function Profile() {
   };
 
 
-  const handleLike = (postId) => {
-    setPosts((prevPosts) => 
-      prevPosts.map((post) => 
-        post._id === postId
-         ? { ...post, isLiked: !post.isLiked, likes: post.isLiked ? post.likes - 1 : post.likes + 1 }
-         : post
-       )
-    )
+  const handleLike = async (postId) => {
+    try {
+       await AxiosInstance.post('/api/user/like/',{
+        userId:state?.userpro?._id,
+        postId:postId,
+       })
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   // useEffect( () => {
@@ -215,7 +218,7 @@ function Profile() {
         </CardContent>
       <CardActions disableSpacing>
       <IconButton aria-label="add to favorites" onClick={() => handleLike(post._id)}>
-              {post?.isLiked ? <FavoriteRounded /> : <FavoriteBorderRounded />}
+              {/* {post?.isLiked ? <FavoriteRounded /> : <FavoriteBorderRounded />} */}
             </IconButton>
             <Typography variant="body2" color="text.secondary">
               {post?.likes}

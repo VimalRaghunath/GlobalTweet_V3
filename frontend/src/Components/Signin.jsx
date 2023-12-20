@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios"
 import { useCookies } from 'react-cookie';
 import { AxiosInstance } from "./AxiosInstance";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { app } from "./Firebase";
 // import { toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 
@@ -43,36 +45,28 @@ function Signin() {
     }
   };
 
-  const googleSignin = async (name,email) => {
-     try {
-      const formData = {
-        name,email 
-      }
-       if(formData){
-        const response = await AxiosInstance.post("/api/user/googlesignin", formData)
-         
-        if (response.data.status == "success") {
-          setcookie("cookies",response.data.data)
-          alert("Redirected to home page")
-          navigate("/")
-        } else {
-          alert("failed")
-        }
-       } else {
-        console.log("Something went wrong")
-       }
-     } catch (error) {
-       alert(error)
-     }
-  }
+
+ const handleGoogleClick = async () => {
+    try {
+      const provider = new GoogleAuthProvider()
+      const auth = getAuth(app)
+
+      const  result = await signInWithPopup( auth, provider )
+      console.log(result)
+    } catch (error) {
+       console.log('Could not sign in with google', error)
+    }
+ }
+
+  
    
 
   return (
     <div className="container">
       <div className="Signin">
-        <h1 className="SignintoGlobalTweet" >Sign in to GlobalTweet</h1>
-        <button className="SigninwithGoogle" action="" onSubmit={googleSignin} >Sign in with Google</button>
-        <button className="SigninwithApple">Sign in with Apple</button>
+        <h1 className="SignintoGlobalTweet" > Sign in to GlobalTweet </h1>
+        <button className="SigninwithGoogle" onClick={handleGoogleClick} > Sign in with Google </button>
+        <button className="SigninwithApple"> Sign in with Apple </button>
 
         
           <div className="hr-main">

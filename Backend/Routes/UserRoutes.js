@@ -8,7 +8,7 @@ const Auth = require("../Middleware/userAuthentication");
 
 UserRouter.post('/createanaccount',Trycatch(UserController.createuser))
 UserRouter.post('/',Trycatch(UserController.signin))
-UserRouter.post('/googlelogin',UserController.googlesignin)
+// UserRouter.post('/googlelogin',UserController.googlesignin)
 UserRouter.get('/profile',Auth,UserController.profile)
 UserRouter.post('/newpost',Auth,UserController.post)
 UserRouter.get('/post',Trycatch(UserController.getAllPost))

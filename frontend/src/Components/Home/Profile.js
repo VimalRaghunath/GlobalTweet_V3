@@ -29,14 +29,13 @@ function Profile() {
   const [state, setState] = useState("");
   const [cookie, setcookie, removecookie] = useCookies(["cookies"]);
   const [mypost, setMypost] = useState([]);
-  console.log(mypost);
+  // console.log(mypost);
   const [posts,setPosts] = useState([])
   const navigate = useNavigate();
   const [editProfileOpen, setEditProfileOpen] = useState(false);
   const [coverphotoOpen,setCoverphotoOpen] = useState(false);
 
 
-  // console.log(mypost);
 
   useEffect(() => {
     async function newcookie() {
@@ -193,8 +192,10 @@ function Profile() {
   <div> 
     <u><h2 style={{textAlign:"center"}}>My Posts</h2></u>
 <Card sx={{ maxWidth: 545 }}>
-  {mypost?.data?.map((post) => (
+  {mypost.map((post) => (
+    
     <div key={post?._id}>
+      {console.log(post)}
       <CardHeader
         avatar={<Avatar aria-label="recipe" src={post?.userId?.Avatar} />}
         action={

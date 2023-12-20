@@ -36,8 +36,10 @@ function Post() {
 
   const handleLike = async (postId) => {
     try {
-      const response = await AxiosInstance.post(`/api/user/like/${postId}`, { id: postId, username: 'currentUsername' });
-      console.log(response.data);
+       await AxiosInstance.post('/api/user/like/',{
+        userId:post?.userpro?._id,
+        postId:postId,
+       })
     } catch (error) {
       console.error(error);
     }
@@ -86,7 +88,7 @@ function Post() {
       </CardContent>
       <CardActions disableSpacing >
       <IconButton aria-label="add to favorites" onClick={() => handleLike(post._id)}>
-           {post?.isLiked ? <FavoriteRounded/> : <FavoriteBorderRounded />}
+           {post?.likes ? <FavoriteRounded/> : <FavoriteBorderRounded />}
        </IconButton>
          <Typography variant="body2" color="text.secondary">
             {post?.likes}

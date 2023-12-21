@@ -57,9 +57,7 @@ function Signin() {
        console.log('Could not sign in with google', error)
     }
  }
-
-  
-   
+    
 
   return (
     <div className="container">
